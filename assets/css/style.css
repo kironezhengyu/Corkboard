@@ -1,0 +1,198 @@
+     /* This makes absolutely positioned elements like p, h1,
+     and some bootstrap elements placed properly. */
+     #absolute-wrapper p, #absolute-wrapper h1, #absolute-wrapper h2, #absolute-wrapper h3, #absolute-wrapper h4, #absolute-wrapper h5, #absolute-wrapper h6 {
+       margin-top: 0 !important;
+     }
+     /* Set floating body text margins to 0 */
+     [class*="dom-body-text"] p {
+       margin: 0 0 10px 0;
+     }
+     .container .row-fluid .span3 .well .nav li a .icon.icon-1 {
+       color: #8f8f8f;
+       margin: 3px 0px 0px;
+     }
+     .container .row-fluid .span3 .well .nav li a.a-3 {
+       padding: 8px 15px 8px 15px;
+       margin: 0px;
+       font-size: 15px;
+       border-top: none;
+       border-right: none;
+       border-bottom: 1px solid #ebebeb;
+       border-left: none;
+     }
+     .container .row-fluid .span3 li a .icon.icon-4 {
+       color: #8f8f8f;
+       margin: 3px 0px 0px;
+     }
+     .container .row-fluid .span3 li a.a-4 {
+       padding: 8px 15px 8px 15px;
+       font-size: 15px;
+     }
+     .container-fluid .container .row-fluid .span12 .nav li a.a-5 {
+       text-align: center;
+       color: #cccccc;
+     }
+     .container-fluid .container .row-fluid .span12 p.p-1 {
+       font-weight: 300;
+       font-size: 22px;
+     }
+     .container-fluid .container.container-1 {
+       margin-top: 30px;
+       margin-bottom: 40px;
+     }
+     .container-fluid.container-fluid-1 {
+       background: #f5f5f5;
+       border-bottom: 1px solid #dfedeb;
+     }
+     .container-fluid.container-fluid-2 {
+       background: #333333;
+       padding: 30px 20px 30px 20px;
+     }
+     .container.container-2 {
+       margin-top: 60px;
+       margin-bottom: 60px;
+     }
+     .navbar .navbar-inner .nav li a.a-1 {
+       color: #333333;
+       line-height: 40px;
+     }
+     .navbar .navbar-inner .nav li a.a-2 {
+       line-height: 40px;
+     }
+     .container .row-fluid .span3 .well .nav li a.a-3 .icon.icon-2 {
+       color: #8f8f8f;
+       margin: 3px 0px 0px;
+     }
+     .container .row-fluid .span3 .well .nav li a.a-3 .icon.icon-3 {
+       color: #8f8f8f;
+       margin: 3px 0px 0px;
+     }
+     #absolute-wrapper {
+       position: relative;
+       width: 1190px;
+       /* centers the document */
+       margin: 0 auto;
+       /* hack to stick to top of page */
+       height: 1px;
+     }
+     .navbar {
+       height: 60px;
+     }
+     .navbar .navbar-inner {
+       background: rgba(255, 255, 255, 0.960784);
+       border: none;
+       height: 60px;
+     }
+     .navbar .navbar-inner .brand {
+       margin: 0px 0px 0px -15px;
+       text-shadow: none;
+       -moz-box-shadow: none;
+       -webkit-box-shadow: none;
+       -o-box-shadow: none;
+       box-shadow: none;
+       font-family:"oswald";
+       font-size: 24px;
+       font-weight: bold;
+       color: #333333;
+       line-height: 40px;
+     }
+     .navbar .navbar-inner .image {
+       border-top-left-radius: 0px;
+       border-top-right-radius: 0px;
+       border-bottom-right-radius: 0px;
+       border-bottom-left-radius: 0px;
+       margin: 16px 0px 0px;
+       height: 30px;
+       width: 30px;
+     }
+     .container-fluid .container .row-fluid .span12 .heading {
+       line-height: 64px;
+       font-size: 68px;
+     }
+     .dom-body-text {
+       overflow: hidden;
+       width: 405px;
+       height: 90px;
+       position: absolute;
+       top: 42px;
+       left: 948px;
+     }
+     .dom-body-text p {
+       background-image: none;
+       font-family: Arial;
+       line-height: 21px;
+       font-size: 14px;
+       background-color: rgba(0, 0, 0, 0);
+       color: #333333;
+       font-weight: normal;
+       text-decoration: initial;
+       text-align: left;
+       text-shadow: none;
+       padding: 0px;
+       border: none;
+     }
+     .container .row-fluid .span3 .well {
+       padding: 0px;
+       background: rgba(0, 0, 0, 0);
+       border-radius: 0px;
+       -moz-box-shadow: none;
+       -webkit-box-shadow: none;
+       -o-box-shadow: none;
+       box-shadow: none;
+       border-top: 1px solid #f0f0f0;
+       border-right: none;
+       border-bottom: 1px solid #f0f0f0;
+       border-left: none;
+     }
+     .container .row-fluid .span3 .well .nav {
+       padding: 0px;
+     }
+     .container .row-fluid .span3 .well .nav .active a {
+       padding: 8px 15px 8px 15px;
+       margin: 0px -1px 0px -1px;
+       font-size: 15px;
+       border-top: none;
+       border-right: none;
+       border-bottom: 1px solid #ebebeb;
+       border-left: none;
+     }
+     .container .row-fluid .span3 .well .nav .active a .icon {
+       color: #ffffff;
+       margin: 3px 0px 0px;
+     }
+     .container .row-fluid .span9 {
+       padding: 0px 0px 0px 20px;
+     }
+     .container .row-fluid .span9 .image-1 {
+       border-top-left-radius: 2px;
+       border-top-right-radius: 2px;
+       border-bottom-right-radius: 2px;
+       border-bottom-left-radius: 2px;
+       margin: 0px;
+     }
+     .container .row-fluid .span9 .page-header {
+       padding: 0px;
+       margin: -10px 0px 10px 0px;
+     }
+     .container .row-fluid .span9 .page-header h1 {
+       font-weight: normal;
+       font-size: 42px;
+       color: #555555;
+     }
+     .container .row-fluid .span9 .page-header h1 small {
+       font-size: 26px;
+       line-height: 42px;
+     }
+     .container .row-fluid .span9 p {
+       font-weight: 300;
+       font-size: 16px;
+       line-height: 25px;
+     }
+     .container-fluid .container .row-fluid .span12 .nav {
+       margin: 0px;
+     }
+     .container-fluid .container .row-fluid .span12 .pull-left p {
+       font-weight: 300;
+       color: #ffffff;
+       line-height: 36px;
+     }
