@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "frontpage";
 $route['404_override'] = '';
+$route['signUp'] = 'user/register';
 
 
 /* End of file routes.php */
