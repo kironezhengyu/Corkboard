@@ -19,17 +19,19 @@ class user extends CI_Controller {
 		
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header');	
+			$this->load->view('include/header');
+			$this->load->view('include/navbar');	
 			$this->load->view('registration/register');
-			$this->load->view('templates/footer');
+			$this->load->view('include/footer');
 		
 		}
 		else
 		{
 			$this->user_model->add_user();
-			$this->load->view('templates/header');	
+			$this->load->view('include/header');
+			$this->load->view('include/navbar');	
 			$this->load->view('registration/success');
-			$this->load->view('templates/footer');
+			$this->load->view('include/footer');
 		}
 	}
 }

@@ -7,7 +7,8 @@
 -- CALL register_proc('username', 'nickname', 'password', 'conf_password');
 --
 -- CodeIgniter Demo:
--- Put the following into a model (see '\application\models\user_model.php' for full code):
+-- Put the following into a model (see '\application\models\user_model.php'
+-- for full code):
 -- 	public function add_user()
 --	{
 --		$username = $this->input->post('username');
@@ -18,10 +19,12 @@
 --		return $this->db->query("call register_proc('$username', '$nickname', '$password', '$conf_password');");
 --	}
 --
--- Then call inside a controller (see '\application\controllers\user.php' for full code):
+-- Then call inside a controller (see '\application\controllers\user.php' for
+-- full code):
 -- $this->user_model->add_user();
 --
--- Finally, invoke in a view (see '\application\views\registration\register.php' for full code):
+-- Finally, invoke in a view (see '\application\views\registration\register.php'
+-- for full code):
 -- <?php echo form_open('user/register') ?>
 --
 -------------------------------------------------------------------------------
