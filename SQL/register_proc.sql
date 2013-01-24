@@ -1,3 +1,37 @@
+--
+-- Registers a new user to the user database.
+--
+-------------------------------------------------------------------------------
+--
+-- SQL Demo:
+-- CALL register_proc('username', 'nickname', 'password', 'conf_password');
+--
+-- CodeIgniter Demo:
+-- Put the following into a model (see '\application\models\user_model.php' for full code):
+-- 	public function add_user()
+--	{
+--		$username = $this->input->post('username');
+--		$nickname = $this->input->post('nickname');
+--		$password = $this->input->post('password');
+--		$conf_password = $this->input->post('conf_password');
+--	
+--		return $this->db->query("call register_proc('$username', '$nickname', '$password', '$conf_password');");
+--	}
+--
+-- Then call inside a controller (see '\application\controllers\user.php' for full code):
+-- $this->user_model->add_user();
+--
+-- Finally, invoke in a view (see '\application\views\registration\register.php' for full code):
+-- <?php echo form_open('user/register') ?>
+--
+-------------------------------------------------------------------------------
+--
+-- Revision History:
+-- Created - Jordon Phillips - 1/24/13 4:58 p.m.
+-- Documented - Jordon Phillips 1/24/13 5:24 p.m.
+--
+-------------------------------------------------------------------------------
+
 -- You HAVE to change the delimiter. $$ was suggested to me, but // also works.
 -- The idea is that it is something that won't actually be in your code.
 -- Input parameters are identified with IN, output is identified with OUT.
@@ -25,6 +59,7 @@ BEGIN
 	-- Ensures that there isn't a registered user with that username
 	IF username IN (SELECT userName FROM user)
 		THEN
+			--The statement 'RETURN' WILL NOT WORK, don't try it.
 	    	SIGNAL SQLSTATE '03000'
 	    		SET MESSAGE_TEXT = 'Username already exists.';
 	    END IF;
