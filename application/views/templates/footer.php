@@ -1,4 +1,4 @@
-<strong>&copy; Jordon Phillips, Qin Zhengyu, Jack Ma 2013</strong>	
+&copy; Jordon Phillips, Qin Zhengyu, Jack Ma 2013	
 
 <!-- Le javascript
 ================================================== -->
