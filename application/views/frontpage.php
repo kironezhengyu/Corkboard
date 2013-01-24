@@ -12,7 +12,7 @@
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
-        padding-top: 60px;
+        padding-top: 0px;
         padding-bottom: 40px;
       }
     </style>
