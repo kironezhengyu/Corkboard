@@ -7,8 +7,6 @@
    <meta name="keywords" content="">
    <meta name="author" content="">
 
-   <title><?php echo $title?> Corkboard</title>
-
    <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
    <link href="<?php echo base_url('assets/css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
 	 <link href="<?php echo base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
@@ -16,8 +14,12 @@
 
    <style type="text/css">
       body {
-        padding-top: 0px;
-        padding-bottom: 40px;
+        padding-top: 60px;
+      }
+      @media (max-width: 979px) {
+        body {
+          padding-top: 0px;
+        }
       }
    </style>
 

@@ -1,5 +1,4 @@
 <div class="container">
-	<h2>User Registration</h2>
 
 	<?php echo validation_errors(); ?>
 
@@ -14,8 +13,8 @@
 		<label for="password">Password</label>
 		<input type="password" name="password" /><br />
 		
-		<label for="password2">Confirm Password</label>
-		<input type="password" name="password2" /><br />
+		<label for="conf_password">Confirm Password</label>
+		<input type="password" name="conf_password" /><br />
 		
 		<input class="btn" type="submit" name="submit" value="register &raquo" /> 
 

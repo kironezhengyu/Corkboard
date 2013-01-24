@@ -12,16 +12,14 @@ class user extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		
-		$data['title'] = 'User Registration';
-		
 		$this->form_validation->set_rules('username', 'User Name', 'required');
 		$this->form_validation->set_rules('nickname', 'Nick Name', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');	
-		$this->form_validation->set_rules('password2', 'Password2', 'required');	
+		$this->form_validation->set_rules('conf_password', 'Confirm Password', 'required');	
 		
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header', $data);	
+			$this->load->view('templates/header');	
 			$this->load->view('registration/register');
 			$this->load->view('templates/footer');
 		
@@ -29,7 +27,7 @@ class user extends CI_Controller {
 		else
 		{
 			$this->user_model->add_user();
-			$this->load->view('templates/header', $data);	
+			$this->load->view('templates/header');	
 			$this->load->view('registration/success');
 			$this->load->view('templates/footer');
 		}

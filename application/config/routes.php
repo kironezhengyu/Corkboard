@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "frontpage";
 $route['404_override'] = '';
+$route['index.php'] = '';
 $route['signUp'] = 'user/register';
 
 
