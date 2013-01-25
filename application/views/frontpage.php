@@ -33,7 +33,7 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -95,7 +95,7 @@
     <div class="container">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
+      <div class="hero-unit pagination-centered">
         <h1>Welcome to CorkBoard Pre-Alpha!</h1>
         <p>Corkboard is new way to organize your discussions in a format that just makes sense.</p>
         <p><a class="btn btn-primary btn-large" href="index.php/signUp">Sign Up &raquo;</a></p>

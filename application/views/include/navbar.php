@@ -1,5 +1,5 @@
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -31,7 +31,7 @@
             <input type="text" class="search-query" placeholder="Search">
            </form>
           <ul class="nav pull-right">
-        <li><a href="index.php/signUp">Sign Up</a></li>
+        <li><a href="/corkboard/index.php/signUp">Sign Up</a></li>
         <li class="divider-vertical"></li>
         <li class="dropdown">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
