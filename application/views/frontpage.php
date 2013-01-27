@@ -1,4 +1,3 @@
-<?php $this->load->view('include/header')?>
 <?php $this->load->view('include/navbar')?>
 
 <div class="container">
