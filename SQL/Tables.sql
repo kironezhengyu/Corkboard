@@ -2,7 +2,7 @@ CREATE TABLE user (
          userName VARCHAR(10) NOT NULL,
          PRIMARY KEY(userName),
          nickname VARCHAR(100) NOT NULL,
-         password CHAR(32) NOT NULL
+         password VARCHAR(100) NOT NULL
        );
 CREATE TABLE post(
        userName VARCHAR(10) NOT NULL,
