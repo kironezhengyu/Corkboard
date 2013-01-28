@@ -27,6 +27,10 @@
       <p><a class="btn" href="index.php/home">Home &raquo;</a></p>
     </div>
   </div>
+  <ul class="pager">
+    <li><a href="#">Previous</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
 
   <hr>
 
@@ -52,5 +56,3 @@
 <script src="../assets/js/bootstrap-collapse.js"></script>
 <script src="../assets/js/bootstrap-carousel.js"></script>
 <script src="../assets/js/bootstrap-typeahead.js"></script>
-
-<?php $this->load->view('include/footer')?>

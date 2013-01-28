@@ -7,10 +7,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="..">CorkBoard</a>
+        <a class="brand" href="<?php echo base_url('') ?>">CorkBoard</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="<?php echo base_url('index.php/home') ?>">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
 
@@ -31,10 +31,10 @@
             <input type="text" class="search-query" placeholder="Search">
            </form>
           <ul class="nav pull-right">
-        <li><a href="/index.php/signUp">Sign Up</a></li>
+        <li><a href="#">Sign Up</a></li>
         <li class="divider-vertical"></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+          <a class="dropdown-toggle" href="<?php echo base_url('index.php/login') ?>" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
           <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
             <!-- Login form here -->
             <?php echo validation_errors(); ?>
