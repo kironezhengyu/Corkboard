@@ -7,8 +7,8 @@ DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
 START TRANSACTION;
 
 insert into message(postId,userName, content) values (pid,inuname,incontent);
-IF (inlink!= null) THEN 
-	insert into attachment (messageId, link) values((select messageId from message order by messageId desc limit 1), link);
+IF (inlink!= '') THEN 
+	insert into attachment (messageId, link) values((select messageId from message order by messageId desc limit 1), inlink);
 END IF;
 COMMIT;
 
