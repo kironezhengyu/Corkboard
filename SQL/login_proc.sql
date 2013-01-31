@@ -24,7 +24,7 @@ CREATE PROCEDURE login_proc(IN `user_username` VARCHAR(10), IN `user_password` V
 BEGIN
 	SELECT userName
 	FROM user
-	WHERE userName = user_username
-			AND password = user_password;
+	WHERE userName = MD5(user_username)
+			AND password = MD5(user_password);
 END $$
 DELIMITER ;

@@ -1,7 +1,10 @@
+<?php $this->load->view('include/header')?>
+<?php $this->load->view('include/navbar')?>
+
 <div class="container-fluid pagination-centered">
 	<div class="container">
 		<div class="row-fluid">
-			<div class="span4">
+			<div class="span4 offset4">
 				<div class="well">
 					<?php echo validation_errors(); ?>
 
@@ -27,3 +30,5 @@
 		</div>
 	</div>
 </div> <!-- /container -->
+
+<?php $this->load->view('include/footer')?>
