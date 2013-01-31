@@ -31,7 +31,7 @@
             <input type="text" class="search-query" placeholder="Search">
            </form>
           <ul class="nav pull-right">
-        <li><a href="<?php echo base_url('index.php/register')?>">Sign Up</a></li>
+        <li><a href="<?php echo base_url('index.php/signUp')?>">Sign Up</a></li>
         <li class="divider-vertical"></li>
         <li class="dropdown">
           <a class="dropdown-toggle" href="<?php echo base_url('index.php/login') ?>" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
