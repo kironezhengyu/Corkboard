@@ -22,8 +22,8 @@ class user_model extends CI_Model {
 	function login($username, $password)
 	{
 	  
-	   $query = $this -> db -> query("call login_proc(".$this->db->escape($username).",
-	   												  ".$this->db->escape($password).");");
+	   $query = $this -> db -> query("call login_proc(".$this->db->escape(md5($username)).",
+	   												  ".$this->db->escape(md5($password)).");");
 
 	   if($query -> num_rows() == 1)
 	   {

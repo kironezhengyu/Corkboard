@@ -29,5 +29,5 @@ SET MESSAGE_TEXT = 'Passwords do not match.';
    END IF;
 
 INSERT INTO user
-VALUES(MD5(username), nickname, MD5(password));
+VALUES(username, nickname, password);
 END;

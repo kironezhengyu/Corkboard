@@ -20,11 +20,11 @@
 -------------------------------------------------------------------------------
 
 DELIMITER $$
-CREATE PROCEDURE login_proc(IN `user_username` VARCHAR(10), IN `user_password` VARCHAR(100))
+CREATE PROCEDURE login_proc(IN `user_username` VARCHAR(100), IN `user_password` VARCHAR(100))
 BEGIN
 	SELECT userName
 	FROM user
-	WHERE userName = MD5(user_username)
-			AND password = MD5(user_password);
+	WHERE userName = user_username
+			AND password = user_password;
 END $$
 DELIMITER ;
