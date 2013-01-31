@@ -4,7 +4,10 @@
 <div class="container pagination-centered">
 	<div class="row-fluid">
 		<div class="span12">
-			<h1>Welcome <?php echo $username; ?>!</h1>
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<h1>Welcome <?php echo $nickname; ?>!</h1>
+			</div>
 			<div class="row-fluid">
 				<div class="span4">
 					<div class="well well-small">

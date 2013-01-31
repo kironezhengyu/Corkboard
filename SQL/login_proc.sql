@@ -22,7 +22,7 @@
 DELIMITER $$
 CREATE PROCEDURE login_proc(IN `user_username` VARCHAR(100), IN `user_password` VARCHAR(100))
 BEGIN
-	SELECT userName
+	SELECT userName, nickname
 	FROM user
 	WHERE userName = user_username
 			AND password = user_password;
