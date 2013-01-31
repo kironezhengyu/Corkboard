@@ -1,6 +1,6 @@
 -- usage:  call create_post_proc("jack", "some topic", @pid)
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `create_post_proc`(IN `uname` VARCHAR(10), IN `ptopic` VARCHAR(100), OUT `pid` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `create_post_proc`(IN `uname` VARCHAR(100), IN `ptopic` VARCHAR(100), OUT `pid` INT)
 BEGIN
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
