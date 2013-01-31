@@ -36,6 +36,10 @@
 								<div class="well">
 									<h3>Your Post 1</h3>
 									<p>Some content will be posted here.</p>
+									<div class="input-append">
+										<input class="input-large" id="comment" type="text">
+										<button class="btn" type="submit"> &raquo </button>
+									</div>
 								</div>
 							</div>
 
@@ -43,6 +47,10 @@
 								<div class="well">
 									<h3>Your Post 2</h3>
 									<p>Some content will be posted here.</p>
+									<div class="input-append">
+										<input class="input-large" id="comment" type="text">
+										<button class="btn" type="submit"> &raquo </button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -65,6 +73,10 @@
 						<div class="well">
 							<h3>Pinned Post 1</h3>
 							<p>Some content will be posted here.</p>
+							<div class="input-append">
+								<input class="input-large" id="comment" type="text">
+								<button class="btn" type="submit"> &raquo </button>
+							</div>
 						</div>
 					</div>
 
@@ -72,6 +84,10 @@
 						<div class="well">
 							<h3>Pinned Post 2</h3>
 							<p>Some content will be posted here.</p>
+							<div class="input-append">
+								<input class="input-large" id="comment" type="text">
+								<button class="btn" type="submit"> &raquo </button>
+							</div>
 						</div>
 					</div>
 
@@ -79,6 +95,10 @@
 						<div class="well">
 							<h3>Pinned Post 3</h3>
 							<p>Some content will be posted here.</p>
+							<div class="input-append">
+								<input class="input-large" id="comment" type="text">
+								<button class="btn" type="submit"> &raquo </button>
+							</div>
 						</div>
 					</div>
 				</div>
