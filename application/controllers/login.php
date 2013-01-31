@@ -10,8 +10,6 @@
 		 function index()
 		 {
 		   $this->load->helper(array('form'));
-		   $this->load->view('include/header');
-		   $this->load->view('include/navbar');
 		   $this->load->view('login_view');
 		 }
 
