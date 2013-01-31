@@ -10,3 +10,5 @@ insert into message(postId,userName, content) values (pid,inuname,pid);
 insert into attachment (messageId, link) values((select messageId from message order by messageId desc limit 1), link);
 
 COMMIT;
+
+END;
