@@ -1,5 +1,5 @@
 <?php $this->load->view('include/header')?>
-<?php $this->load->view('include/navbar')?>
+<?php $this->load->view('include/navbar_home')?>
 
 <div class="container pagination-centered">
 	<div class="row-fluid">
