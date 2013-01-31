@@ -13,4 +13,6 @@ insert into post(userName, topic) values (uname, ptopic);
 SET pid = (select postId from post order by postId desc limit 1);
 COMMIT;
 
+select pid;
+
 END;
