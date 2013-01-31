@@ -5,6 +5,7 @@ class Home extends CI_Controller {
  function __construct()
  {
    parent::__construct();
+   $this->load->model('communication_model');
  }
 
  function index()
@@ -28,6 +29,27 @@ class Home extends CI_Controller {
    session_destroy();
    redirect('home', 'refresh');
  }
+
+function addPost()
+{
+      $this->load->helper('form');
+    $this->load->library('form_validation');
+    
+    $this->form_validation->set_rules('topic', 'Topic', 'required');
+    $this->form_validation->set_rules('initial_message', 'Message', 'required');
+
+
+    if($this->form_validation->run() == TRUE){
+      $this->communication_model->add_post();
+    }
+	
+
+	$session_data = $this->session->userdata('logged_in');
+	$data['username'] = $session_data['username'];
+    $this->load->view('home_view', $data);
+
+
+}
 
 }
 
