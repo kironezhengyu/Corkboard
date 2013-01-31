@@ -31,14 +31,19 @@
 						<hr>
 
 						<div class="row-fluid">
+						
 							<div class="span6">
-								<h3>Your Post 1</h3>
-								<p>Some content will be posted here.</p>
+								<div class="well">
+									<h3>Your Post 1</h3>
+									<p>Some content will be posted here.</p>
+								</div>
 							</div>
 
 							<div class="span6">
-								<h3>Your Post 2</h3>
-								<p>Some content will be posted here.</p>
+								<div class="well">
+									<h3>Your Post 2</h3>
+									<p>Some content will be posted here.</p>
+								</div>
 							</div>
 						</div>
 
@@ -57,18 +62,24 @@
 				<div class="row-fluid">
 
 					<div class="span4">
-						<h3>Pinned Post 1</h3>
-						<p>Some content will be posted here.</p>
+						<div class="well">
+							<h3>Pinned Post 1</h3>
+							<p>Some content will be posted here.</p>
+						</div>
 					</div>
 
 					<div class="span4">
-						<h3>Pinned Post 2</h3>
-						<p>Some content will be posted here.</p>
+						<div class="well">
+							<h3>Pinned Post 2</h3>
+							<p>Some content will be posted here.</p>
+						</div>
 					</div>
 
 					<div class="span4">
-						<h3>Pinned Post 3</h3>
-						<p>Some content will be posted here.</p>
+						<div class="well">
+							<h3>Pinned Post 3</h3>
+							<p>Some content will be posted here.</p>
+						</div>
 					</div>
 				</div>
 
