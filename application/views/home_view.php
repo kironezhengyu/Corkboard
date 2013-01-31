@@ -9,7 +9,7 @@
 				<div class="span4">
 					<div class="well well-small">
 						<?php echo validation_errors(); ?>
-						<form>
+						<?php echo form_open('home/addPost') ?>
 							<h2 class="muted">Create a new post.</h2>
 
 							<label for="post_topic"><strong>Post Topic:</strong></label>
@@ -21,7 +21,7 @@
 							<label for="post_link"><strong>Attachment</strong></label>
 							<input class="input-large" name="post_link" type="text" /><br />
 
-							<a class="btn btn-large btn-primary">Post &raquo</a>
+							<input class="btn btn-primary btn-large" type="submit" name="submit" value="Post &raquo" /> 
 						</form>
 					</div>
 				</div>
