@@ -32,15 +32,20 @@ class communication_model extends CI_Model {
 		//return $this->db->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($msg_content).",".$this->db->escape($pid).",".$this->db->escape($attachment_link).");");
 	}
 	
-	public function fetch_post()
+	public function fetch_posts($username, $latest_offset)
 	{
-		$query = $this->db->query("call fetch_post_proc(".$username.", ".$latest_offset.")");
+		$query = $this->db->query("call fetch_post_proc('".$username."', ".$latest_offset.")");
 		
+		$count =0;
+		$result = array();
 		foreach($query->result_array() as $row)
-		{
-			echo $row['nickname'];
-			echo ': ';
-			echo $row['content'];
+		{	 
+			$result[$count]['nickname']= $row['nickname'];
+			$result[$count]['topic'] = $row['topic'];
+			$result[$count]['content']= $row['content'];
+			$count++;
 		}		
+		return $result;
+
 	}
 }

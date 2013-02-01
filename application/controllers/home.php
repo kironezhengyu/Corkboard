@@ -5,6 +5,7 @@ class Home extends CI_Controller {
  function __construct()
  {
    parent::__construct();
+   header('Access-Control-Allow-Origin: *');
    $this->load->model('communication_model');
  }
 
@@ -15,6 +16,7 @@ class Home extends CI_Controller {
      $session_data = $this->session->userdata('logged_in');
      $data['username'] = $session_data['username'];
 	 $data['nickname'] = $session_data['nickname'];
+    $data['posts'] = $this->communication_model->fetch_posts($data['username'], 0);
      $this->load->view('home_view', $data);
    }
    else
@@ -22,6 +24,26 @@ class Home extends CI_Controller {
      //If no session, redirect to login page
      redirect('login', 'refresh');
    }
+ }
+
+ function fetch_posts(){
+     $data = array();
+     $data['error'] = 0; 
+     if($this->session->userdata('logged_in') && intval($this->uri->segment(2)) > -1)
+     { 
+     $offset = intval($this->uri->segment(2));
+     $session_data = $this->session->userdata('logged_in');
+     $username = $session_data['username'];
+     $data['posts'] = $this->communication_model->fetch_posts($username, $offset );
+	 echo json_encode($data);
+     return json_encode($data);   
+   }
+   else
+   {
+     $data['error'] =1;
+     return json_encode($data);
+   }
+
  }
 
  function logout()
