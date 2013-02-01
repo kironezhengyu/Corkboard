@@ -11,10 +11,9 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li class="active"><a href="<?php echo base_url('index.php/home') ?>">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-
-            <li class="dropdown">
+            <li>
+              <a href="#about" role="button" data-backdrop="false" data-toggle="modal" >About</a></li>
+                          <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
@@ -26,6 +25,35 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+
+            <li class="contact_popover">
+             <a href="#" role="button">Contact</a>
+              <script>
+              var options = {
+                placement : 'bottom'
+                , title : 'Contact Us'
+                , content : 'yups'
+              }
+              jQuery('.contact_popover').popover(options);           </script>
+            </li>
+
+<!-- Modal -->
+<div id="about" class="modal hide" >
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">About</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+   
+  </div>
+</div>
+
+
+
           </ul>
            <form class="navbar-search pull-left">
             <input type="text" class="search-query" placeholder="Search">
