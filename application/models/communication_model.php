@@ -31,4 +31,16 @@ class communication_model extends CI_Model {
 
 		//return $this->db->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($msg_content).",".$this->db->escape($pid).",".$this->db->escape($attachment_link).");");
 	}
+	
+	public function fetch_post()
+	{
+		$query = $this->db->query("call fetch_post_proc(".$username.", ".$latest_offset.")");
+		
+		foreach($query->result_array() as $row)
+		{
+			echo $row['nickname']
+			echo ': '
+			echo $row['content']
+		}		
+	}
 }
