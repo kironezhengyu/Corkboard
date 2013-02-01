@@ -38,9 +38,9 @@ class communication_model extends CI_Model {
 		
 		foreach($query->result_array() as $row)
 		{
-			echo $row['nickname']
-			echo ': '
-			echo $row['content']
+			echo $row['nickname'];
+			echo ': ';
+			echo $row['content'];
 		}		
 	}
 }
