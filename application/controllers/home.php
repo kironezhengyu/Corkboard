@@ -29,9 +29,9 @@ class Home extends CI_Controller {
  function fetch_posts(){
      $data = array();
      $data['error'] = 0; 
-     if($this->session->userdata('logged_in') && intval($this->uri->segment(2)) > -1)
+     if($this->session->userdata('logged_in') && intval($this->uri->segment(3)) > -1)
      { 
-     $offset = intval($this->uri->segment(2));
+     $offset = intval($this->uri->segment(3));
      $session_data = $this->session->userdata('logged_in');
      $username = $session_data['username'];
      $data['posts'] = $this->communication_model->fetch_posts($username, $offset );
