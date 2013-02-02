@@ -128,14 +128,27 @@
 			    var data = JSON.parse(d);
  				$('.post1').empty();
  				$('.post2').empty();
-				if(data["posts"].length > 0){ 
-					$('.post1').html("<b>" + data["posts"][0]['nickname'] + ":</b> - " + data["posts"][0]['content']);
-					$('.h3post1').html(data["posts"][0]['topic']);
+				var i = 0;
+				var topic = data["posts"][0]['topic'];
+				
+				$('.h3post1').html(topic);
+				var messages = "";
+				while(i < data["posts"].length) {
+					messages = messages + "<b>" + data["posts"][i]['nickname'] + ":</b> - " + data["posts"][i]['content'] + "<br>";
+					i++;
+					console.log(messages);
 				}
-				if(data["posts"].length > 1){
-				    $('.h3post2').html(data["posts"][1]['topic']);
-					$('.post2').html("<b>" + data["posts"][1]['nickname'] + ":</b> - " + data["posts"][1]['content']);
-				}
+				console.log(messages);
+				$('.post1').html(messages);
+				
+				//if(data["posts"].length > 0){ 
+				//	$('.post1').html("<b>" + data["posts"][0]['nickname'] + ":</b> - " + data["posts"][0]['content']);
+				//	$('.h3post1').html(data["posts"][0]['topic']);
+				//}
+				//if(data["posts"].length > 1){
+				//    $('.h3post2').html(data["posts"][1]['topic']);
+				//	$('.post2').html("<b>" + data["posts"][1]['nickname'] + ":</b> - " + data["posts"][1]['content']);
+				//}
  			}
  			, error : function(){
  				$('.post1').empty();
