@@ -34,7 +34,7 @@ class communication_model extends CI_Model {
 	
 	public function fetch_posts($username, $latest_offset)
 	{
-		$query = $this->db->query("call fetch_post_proc('".$this->db->escape($username)."', ".$this->db->escape($latest_offset).")");
+		$query = $this->db->query("call fetch_post_proc(".$this->db->escape($username).", ".$this->db->escape($latest_offset).")");
 		
 		$count =0;
 		$result = array();
