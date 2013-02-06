@@ -30,15 +30,16 @@
 				</div>
 				<div class="span8">
 					<div class="well">
+						<button type="button" class="close"><i class="icon-refresh"></i></button>
 						<h2 class="muted">Your Posts</h2>
 						<hr>
 
 						<div class="row-fluid">
-						
 							<div class="span6">
 								<div class="well">
 									<h3 class="h3post1">Your Post 1</h3>
 									<div class="post1">Some content will be posted here.</div>
+									<br>
 									<div class="input-append">
 										<input class="input-large" id="comment" type="text">
 										<button class="btn" type="submit"> &raquo </button>
@@ -50,6 +51,7 @@
 								<div class="well">
 									<h3 class="h3post2">Your Post 2</h3>
 									<div class="post2">Some content will be posted here.</div>
+									<br>
 									<div class="input-append">
 										<input class="input-large" id="comment" type="text">
 										<button class="btn" type="submit"> &raquo </button>
@@ -67,6 +69,7 @@
 				</div>
 			</div>
 			<div class="well">
+				<button type="button" class="close"><i class="icon-refresh"></i></button>
 				<h2 class="muted">Pinned Posts</h2>
 				<hr>
 
@@ -76,6 +79,7 @@
 						<div class="well">
 							<h3>Pinned Post 1</h3>
 							<div class="pinned1">Some content will be posted here.</div>
+							<br>
 							<div class="input-append">
 								<input class="input-large" id="comment" type="text">
 								<button class="btn" type="submit"> &raquo </button>
@@ -87,6 +91,7 @@
 						<div class="well">
 							<h3>Pinned Post 2</h3>
 							<div class="pinned2">Some content will be posted here.</div>
+							<br>
 							<div class="input-append">
 								<input class="input-large" id="comment" type="text">
 								<button class="btn" type="submit"> &raquo </button>
@@ -98,6 +103,7 @@
 						<div class="well">
 							<h3>Pinned Post 3</h3>
 							<p>Some content will be posted here.</p>
+							<br>
 							<div class="input-append">
 								<input class="input-large" id="comment" type="text">
 								<button class="btn" type="submit"> &raquo </button>
@@ -107,10 +113,10 @@
 				</div>
 
 				<hr>
-				<ul class="pager">
-					<li><a href="#">Previous</a></li>
-					<li><a href="#">Next</a></li>
-				</ul>
+				<form name="get_post" action="home/getpost/get_post">
+					<input type="submit" value="prev" name="submit" class = "btn"/>
+					<input type="submit" value="next" name="submit" class="btn" />
+				</form>
 			</div>
 		</div>
 	</div>
@@ -140,15 +146,6 @@
 				}
 				console.log(messages);
 				$('.post1').html(messages);
-				
-				//if(data["posts"].length > 0){ 
-				//	$('.post1').html("<b>" + data["posts"][0]['nickname'] + ":</b> - " + data["posts"][0]['content']);
-				//	$('.h3post1').html(data["posts"][0]['topic']);
-				//}
-				//if(data["posts"].length > 1){
-				//    $('.h3post2').html(data["posts"][1]['topic']);
-				//	$('.post2').html("<b>" + data["posts"][1]['nickname'] + ":</b> - " + data["posts"][1]['content']);
-				//}
  			}
  			, error : function(){
  				$('.post1').empty();

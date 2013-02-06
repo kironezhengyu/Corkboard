@@ -75,6 +75,17 @@ function addPost()
 
 }
 
+function get_post(){
+
+	$getpost = $this->input->post("submit");
+	
+	if (getpost = "prev"){
+		
+			
+		}
+		
+	}
+
 }
 
 ?>
