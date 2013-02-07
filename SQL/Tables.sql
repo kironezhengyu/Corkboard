@@ -24,10 +24,10 @@ CREATE TABLE message(
 );
 
 CREATE TABLE likes (
-        messageId INT(30) NOT NULL,
+        postId INT(30) NOT NULL,
         userName VARCHAR(100) NOT NULL,
-        PRIMARY KEY (messageId, userName),
-        FOREIGN KEY (messageId) REFERENCES message(messageId),
+        PRIMARY KEY (postId, userName),
+        FOREIGN KEY (postId) REFERENCES post(postId),
         FOREIGN KEY (userName) REFERENCES user(userName)
 );
 CREATE TABLE friends (

@@ -31,6 +31,9 @@
             <input type="text" class="search-query" placeholder="Search">
            </form>
             <ul class="nav pull-right">
+			 <li><a href="<?php echo base_url('index.php/friend');?>">Friends</a></li>
+			 <li><a href="<?php echo base_url('index.php/like');?>">Likes</a></li>
+			 <li class="divider-vertical"></li>
              <li><a href="home/logout">Log Out</a></li>
             </ul>
          <!--  <form class="navbar-form pull-right">

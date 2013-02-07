@@ -140,11 +140,13 @@
  				$('.post2').empty();
 				var i = 0;
 				var topic = data["posts"][0]['topic'];
-				$('.h3post1').html(topic);
+				var postID = data["posts"][0]['postId'];
+				$('.h3post1').html(topic + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/like/" + postID + "><i class='icon-thumbs-up'></i>"+"</a>");
 				var messages = "";
 				while(i < data["posts"].length) {
 					messages = messages + "<b>" + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + data["posts"][i]['userName'] + '>'
-										+ data["posts"][i]['nickname'] + ":</a></b> " + data["posts"][i]['content'] + "<br>";
+										+ data["posts"][i]['nickname'] + ":</a></b> " + data["posts"][i]['content']
+										+"<br>";
 										
 					i++;
 				}

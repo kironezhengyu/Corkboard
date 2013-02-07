@@ -72,4 +72,46 @@ class communication_model extends CI_Model {
 
 	}
 	
+	public function getFriend($username){
+		$query = $this->db->query("call fetch_friends(".$this->db->escape($username).")");
+		
+		$count =0;
+		$result = array();
+		foreach($query->result_array() as $row)
+		{	 
+			
+			$result[$count]['nickname']= $row['nickname'];
+			$result[$count]['friend_user_name']= $row['friend_user_name'];
+			$count++;
+		}		
+		return $result;
+	
+	}
+	
+	public function like ($username, $postID){
+		
+		$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+		
+		$res = $mysqli->query("call like_post(".$this->db->escape($postID).", ".$this->db->escape($username).")" );
+		
+		$mysqli->close();
+	
+	}
+	
+	public function fetch_like ($username){
+	
+		$query = $this->db->query("call fetch_likes(".$this->db->escape($username).")");
+		
+		$count =0;
+		$result = array();
+		foreach($query->result_array() as $row)
+		{	 
+			
+			$result[$count]['postId']= $row['postId'];
+			$result[$count]['topic']= $row['topic'];
+			$count++;
+		}		
+		return $result;
+	}
+	
 }

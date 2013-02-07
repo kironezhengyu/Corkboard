@@ -97,10 +97,6 @@ function addFriend($friend){
      $session_data = $this->session->userdata('logged_in');
      $self = $session_data['username'];
      $this->communication_model->add_friend($self,$friend );
-	 
-	 
-	 
-	 
 
 			$session_data = $this->session->userdata('logged_in');
 	$data['username'] = $session_data['username'];
@@ -109,6 +105,18 @@ function addFriend($friend){
 
 		}
 	
+	function like($postID){
+	$session_data = $this->session->userdata('logged_in');
+	$username = $session_data['username'];
+    $this->communication_model->like($username,$postID );
+	
+			$session_data = $this->session->userdata('logged_in');
+	$data['username'] = $session_data['username'];
+	$data['nickname'] = $session_data['nickname'];
+    $this->load->view('home_view', $data);
+	
+	
+	}
 }
 
 ?>
