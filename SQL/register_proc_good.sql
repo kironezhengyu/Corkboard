@@ -3,13 +3,10 @@ IN nickname VARCHAR(100),
                                 IN password CHAR(32),
                                 IN conf_password CHAR(32))
 BEGIN
-IF username IS NULL OR nickname IS NULL OR
-password IS NULL OR conf_password IS NULL
+IF username IS NULL OR nickname IS NULL OR password IS NULL OR conf_password IS NULL
    THEN
-   
-SIGNAL SQLSTATE '02000'
-   
-SET MESSAGE_TEXT = 'Values may not be NULL.';
+	SIGNAL SQLSTATE '02000'   
+		SET MESSAGE_TEXT = 'Values may not be NULL.';
    END IF;
 
 IF username IN (SELECT user.userName FROM user)

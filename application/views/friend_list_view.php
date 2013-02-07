@@ -25,6 +25,7 @@
 				<div class="row-fluid pagination-centered">
 					<div class="span6">
 						<div class="well">
+							<button type="button" class="close"><i class="icon-bookmark"></i></button>
 							<h3 class="h3post1">Friend Post 1</h3>
 							<div class="post1">Some content will be posted here.</div>
 							<br>
@@ -39,6 +40,7 @@
 
 					<div class="span6">
 						<div class="well">
+							<button type="button" class="close"><i class="icon-bookmark"></i></button>
 							<h3 class="h3post2">Friend Post 2</h3>
 							<div class="post2">Some content will be posted here.</div>
 							<br>

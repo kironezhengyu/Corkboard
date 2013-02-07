@@ -25,6 +25,7 @@
 				<div class="row-fluid pagination-centered">
 					<div class="span12">
 						<div class="well">
+							<button type="button" class="close"><i class="icon-bookmark"></i></button>
 							<h3 class="h3post1">Liked Post</h3>
 							<div class="post1">Some content will be posted here.</div>
 							<br>

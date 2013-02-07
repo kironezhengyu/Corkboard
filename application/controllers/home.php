@@ -58,8 +58,8 @@ function addPost()
       $this->load->helper('form');
     $this->load->library('form_validation');
     
-    $this->form_validation->set_rules('topic', 'Topic', 'required');
-    $this->form_validation->set_rules('initial_message', 'Message', 'required');
+    $this->form_validation->set_rules('topic', 'Topic', 'trim|required|xss_clean');
+    $this->form_validation->set_rules('initial_message', 'Message', 'trim|required|xss_clean');
 
 
     if($this->form_validation->run() == TRUE){

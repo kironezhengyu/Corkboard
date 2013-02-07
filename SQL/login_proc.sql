@@ -22,6 +22,12 @@
 DELIMITER $$
 CREATE PROCEDURE login_proc(IN `user_username` VARCHAR(100), IN `user_password` VARCHAR(100))
 BEGIN
+	IF userName IS NULL OR nickname IS NULL
+	THEN
+		SIGNAL SQLSTATE '02000'
+			SET MESSAGE_TEXT = 'Values may not be NULL.';
+	END IF;
+
 	SELECT userName, nickname
 	FROM user
 	WHERE userName = user_username
