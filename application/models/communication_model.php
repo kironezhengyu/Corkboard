@@ -40,7 +40,9 @@ class communication_model extends CI_Model {
 		$result = array();
 		foreach($query->result_array() as $row)
 		{	 
+			$result[$count]['postId']= $row['postId'];
 			$result[$count]['nickname']= $row['nickname'];
+			$result[$count]['userName']= $row['userName'];
 			$result[$count]['topic'] = $row['topic'];
 			$result[$count]['content']= $row['content'];
 			$count++;
@@ -48,4 +50,26 @@ class communication_model extends CI_Model {
 		return $result;
 
 	}
+	
+	public function add_comments($comment_id, $comment,$username){ 
+		
+		$link = "test";
+		
+		$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+		
+		$res = $mysqli->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($comment).",".$this->db->escape($comment_id).",".$this->db->escape($link).");");
+		
+		$mysqli->close();
+	}
+	
+	public function add_friend($self,$friend ){
+		
+			$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+		
+		$res = $mysqli->query("call addFriend(".$this->db->escape($self).", ".$this->db->escape($friend).")" );
+		
+		$mysqli->close();
+
+	}
+	
 }

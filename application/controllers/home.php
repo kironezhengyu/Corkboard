@@ -75,17 +75,40 @@ function addPost()
 
 }
 
-function get_post(){
+function addComment(){
 
-	$getpost = $this->input->post("submit");
+$session_data = $this->session->userdata('logged_in');
+		$username = $session_data['username'];
+
+	$this->load->helper('form');
+	$postID = $this->input->post('comment1_id');
+	$post = $this->input->post('comment1');
+	$this->communication_model->add_comments($postID, $post,$username);
 	
-	if (getpost = "prev"){
-		
-			
-		}
-		
-	}
 
+	$session_data = $this->session->userdata('logged_in');
+	$data['username'] = $session_data['username'];
+	$data['nickname'] = $session_data['nickname'];
+    $this->load->view('home_view', $data);
+	
+	}
+function addFriend($friend){
+	
+     $session_data = $this->session->userdata('logged_in');
+     $self = $session_data['username'];
+     $this->communication_model->add_friend($self,$friend );
+	 
+	 
+	 
+	 
+
+			$session_data = $this->session->userdata('logged_in');
+	$data['username'] = $session_data['username'];
+	$data['nickname'] = $session_data['nickname'];
+    $this->load->view('home_view', $data);
+
+		}
+	
 }
 
 ?>

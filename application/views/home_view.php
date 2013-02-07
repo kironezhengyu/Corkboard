@@ -41,8 +41,10 @@
 									<div class="post1">Some content will be posted here.</div>
 									<br>
 									<div class="input-append">
-										<input class="input-large" id="comment" type="text">
-										<button class="btn" type="submit"> &raquo </button>
+									<?php echo form_open('home/addComment') ?>
+									<input class="input-large" id="comment1" name = "comment1" type="text">
+									<input type="hidden" id="comment1_id" name="comment1_id" value="" />
+										<button class="btn" type="submit"> &raquo </button></form>
 									</div>
 								</div>
 							</div>
@@ -93,7 +95,7 @@
 							<div class="pinned2">Some content will be posted here.</div>
 							<br>
 							<div class="input-append">
-								<input class="input-large" id="comment" type="text">
+								<input class="input-large" id="comment2" type="text">
 								<button class="btn" type="submit"> &raquo </button>
 							</div>
 						</div>
@@ -128,24 +130,27 @@
 						echo $base;
 				?>;
  var current_offset = 0;
+
  var ajax_fetch = function(base_url , current_offset){
  	return $.ajax( { url: base_url + "/index.php/home/fetch_posts/" + current_offset
  			, success : function(d){
 			    var data = JSON.parse(d);
- 				$('.post1').empty();
+ 				var offset = current_offset; 
+				$('.post1').empty();
  				$('.post2').empty();
 				var i = 0;
 				var topic = data["posts"][0]['topic'];
-				
 				$('.h3post1').html(topic);
 				var messages = "";
 				while(i < data["posts"].length) {
-					messages = messages + "<b>" + data["posts"][i]['nickname'] + ":</b> - " + data["posts"][i]['content'] + "<br>";
+					messages = messages + "<b>" + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + data["posts"][i]['userName'] + '>'
+										+ data["posts"][i]['nickname'] + ":</a></b> " + data["posts"][i]['content'] + "<br>";
+										
 					i++;
-					console.log(messages);
 				}
 				console.log(messages);
 				$('.post1').html(messages);
+				$('input[name=comment1_id]').val(parseInt(data["posts"][0]['postId']));				
  			}
  			, error : function(){
  				$('.post1').empty();
