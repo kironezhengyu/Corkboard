@@ -14,33 +14,8 @@
 						<h2 class="muted">Your Posts</h2>
 						<hr>
 
-						<div class="row-fluid">
-							<div class="span6">
-								<div class="well">
-									<h3 class="h3post1">Your Post 1</h3>
-									<div class="post1" name = "p1">Some content will be posted here.</div>
-									<br>
-									<div class="input-append">
-									<?php echo validation_errors(); ?>
-									<?php echo form_open('home/addComment') ?>
-									<input class="input-large" id="comment1" name = "comment1" type="text">
-									<input type="hidden" id="comment1_id" name="comment1_id" value="" />
-										<button class="btn" type="submit"> &raquo </button></form>
-									</div>
-								</div>
-							</div>
-
-							<div class="span6">
-								<div class="well">
-									<h3 class="h3post2">Your Post 2</h3>
-									<div class="post2" name = "p2" value= "">Some content will be posted here.</div>
-									<br>
-									<div class="input-append">
-										<input class="input-large" id="comment" type="text">
-										<button class="btn" type="submit"> &raquo </button>
-									</div>
-								</div>
-							</div>
+						<div class="row-fluid" id="users_post_area">
+							
 						</div>
 
 						<hr>
@@ -77,42 +52,63 @@
 				?>;
  var current_offset = 0;
 
- var ajax_fetch = function(base_url , current_offset){
+ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
  	return $.ajax( { url: base_url + "/index.php/home/fetch_posts/" + current_offset
  			, success : function(d){
 			    var data = JSON.parse(d);
  				var offset = current_offset; 
-				$('.post1').empty();
- 				$('.post2').empty();
-				var i = 0;
-				var topic = data["posts"][0]['topic'];
-				var postID = data["posts"][0]['postId'];
-				$('.h3post1').html(topic + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/like/" + postID + "><i class='icon-thumbs-up'></i>"+"</a>");
-
+				$(post_loc).empty();
 				
-				$('.h3post2').html(topic + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/like/" + postID + "><i class='icon-thumbs-up'></i>"+"</a>");
-
+				var span_length = 12 / fetch_amt;
+				var i = 0;
+				var k = 0;
+				var j = 0;
 				var messages = "";
-				while(i < data["posts"].length) {
-					messages = messages + "<b>" + "<a class='announce btn btn-link' data-toggle='modal' data-uname='" + data["posts"][i]['userName']
-										+ "' data-nickname='" + data["posts"][i]['nickname'] + "'>"
-										+ data["posts"][i]['nickname'] + ":</a></b> " + data["posts"][i]['content']
+				var topic;
+				var postID;
+				var post;
+				var fetched_posts = "";
+				
+				while (k < fetch_amt){ // Post loop
+					j = i;
+					topic = data["posts"][i]['topic'];
+					postID = data["posts"][i]['postId'];
+					messages = "";
+					post = "";
+					
+					
+					while (j < data["posts"].length && topic == data["posts"][j]['topic']){ // Message loop
+						messages = messages + "<b>" + "<a class='announce btn btn-link' data-toggle='modal' data-uname='" + data["posts"][j]['userName']
+										+ "' data-nickname='" + data["posts"][j]['nickname'] + "'>"
+										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content']
 										+"<br>";
-				//	messages = messages + "<b>" + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + data["posts"][i]['userName'] + '>'
-				//						+ data["posts"][i]['nickname'] + ":</a></b> " + data["posts"][i]['content']
-				//						+"<br>";
-										
-					i++;
-				}
-				$('.post1').html(messages);
-				$('.post2').html(messages);
-				$('input[name=comment1_id]').val(parseInt(data["posts"][0]['postId']));				
+						j++;
+					} // End of message loop
+					console.log(messages);
+					
+					post = "<div class='span" + span_length + "'>" +
+								"<div class='well'>" +
+									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
+											postID + "'> - <i class='icon-thumbs-up'></i></a></h3>" +
+									"<br>" + messages + "<br>" +
+									"<div class='input-append'>" +
+										'<?php echo form_open('home/addComment'); ?>' +
+										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+										"<input type='hidden' name='comment1_id' value='' />" +
+											"<button class='btn' type='submit'> &raquo </button></form>" +
+									"</div>" +
+								"</div>" +
+							"</div>";
+					
+					fetched_posts += post;
+					i += j;
+					k++;
+				} // End of post loop
+				$(post_loc).html(fetched_posts);
  			}
  			, error : function(){
- 				$('.post1').empty();
- 				$('.post2').empty();
- 				$('.post1').html('An error occurred');
- 				$('.post2').html('An error occurred');
+ 				$(post_loc).empty();
+ 				$(post_loc).html('An error occurred');
  			}
 			, type: 'GET'
 			, async: false
@@ -123,11 +119,11 @@
 	if(current_offset < 0){
 	  current_offset =0;
 	}
- 	ajax_fetch(base_url, current_offset);
+ 	ajax_fetch(base_url, current_offset, 1, "#users_post_area");
  });
  $('.next_btn').on("click", function(){
  	current_offset++;
- 	ajax_fetch(base_url, current_offset);
+ 	ajax_fetch(base_url, current_offset, 1, "#users_post_area");
  });
  $(document).on("click", ".announce", function(){
 	var cookie_uname = '<?php echo $username ?>';
@@ -140,7 +136,7 @@
 		$('#friend_conf').modal('show');
 	}
  });
- ajax_fetch(base_url, 0); 
+ ajax_fetch(base_url, 0, 1, "#users_post_area"); 
 });
 </script>
 
