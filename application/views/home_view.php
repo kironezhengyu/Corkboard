@@ -53,7 +53,31 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div id="friend_conf" class="modal hide" >
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 class="uname_m" >Username</h3>
+	  </div>
+	  <div class="modal-body" id="friend_body">
+		<p>They will be added to your list, but you won't be added to theirs. If you want them to follow you, make them like you!</p>
+	  </div>
+	  <div class="modal-footer" id="friend_add">
+		<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+	
 </div>
+
+<script>
+$(document).ready(function(){
+   $(".announce").click(function(){ // Click to only happen on announce links
+     $("#uname_m").val($(this).data('id'));
+     $('#conf_modal').modal('show');
+   });
+});
+</script>
 
 <script>
  $(function(){
@@ -79,9 +103,13 @@
 
 				var messages = "";
 				while(i < data["posts"].length) {
-					messages = messages + "<b>" + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + data["posts"][i]['userName'] + '>'
+					messages = messages + "<b>" + "<a class='announce btn btn-link' data-toggle='modal' data-uname='" + data["posts"][i]['userName']
+										+ "' data-nickname='" + data["posts"][i]['nickname'] + "'>"
 										+ data["posts"][i]['nickname'] + ":</a></b> " + data["posts"][i]['content']
 										+"<br>";
+				//	messages = messages + "<b>" + "<a href=" + <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + data["posts"][i]['userName'] + '>'
+				//						+ data["posts"][i]['nickname'] + ":</a></b> " + data["posts"][i]['content']
+				//						+"<br>";
 										
 					i++;
 				}
@@ -110,6 +138,15 @@
  $('.next_btn').on("click", function(){
  	current_offset++;
  	ajax_fetch(base_url, current_offset);
+ });
+ $(document).on("click", ".announce", function(){
+    var uname = $(this).data('uname');
+	var nickname = $(this).data('nickname');
+	var addfriend = <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + uname;
+    $('.uname_m').html("Do you wish to add " + nickname + " to your friends list?");
+	$('#friend_add').html("<a class='btn btn-primary' href='" + addfriend + "'> Confirm </a>");
+	$('#friend_body').html(addfriend);
+    $('#friend_conf').modal('show');
  });
  ajax_fetch(base_url, 0); 
 });
