@@ -71,15 +71,6 @@
 </div>
 
 <script>
-$(document).ready(function(){
-   $(".announce").click(function(){ // Click to only happen on announce links
-     $("#uname_m").val($(this).data('id'));
-     $('#conf_modal').modal('show');
-   });
-});
-</script>
-
-<script>
  $(function(){
  var base_url = <?php $base = "'" . base_url('') . "'";
 						echo $base;
@@ -113,7 +104,6 @@ $(document).ready(function(){
 										
 					i++;
 				}
-				console.log(messages);
 				$('.post1').html(messages);
 				$('.post2').html(messages);
 				$('input[name=comment1_id]').val(parseInt(data["posts"][0]['postId']));				
@@ -140,13 +130,15 @@ $(document).ready(function(){
  	ajax_fetch(base_url, current_offset);
  });
  $(document).on("click", ".announce", function(){
+	var cookie_uname = '<?php echo $username ?>';
     var uname = $(this).data('uname');
-	var nickname = $(this).data('nickname');
-	var addfriend = <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + uname;
-    $('.uname_m').html("Do you wish to add " + nickname + " to your friends list?");
-	$('#friend_add').html("<a class='btn btn-primary' href='" + addfriend + "'> Confirm </a>");
-	$('#friend_body').html(addfriend);
-    $('#friend_conf').modal('show');
+	if (uname != cookie_uname) {
+		var nickname = $(this).data('nickname');
+		var addfriend = <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + uname;
+		$('.uname_m').html("Do you wish to add " + nickname + " to your friends list?");
+		$('#friend_add').html("<a class='btn btn-primary' href='" + addfriend + "'> Confirm </a>");
+		$('#friend_conf').modal('show');
+	}
  });
  ajax_fetch(base_url, 0); 
 });
