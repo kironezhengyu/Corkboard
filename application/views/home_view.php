@@ -11,7 +11,6 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="well">
-						<button type="button" class="close"><i class="icon-refresh"></i></button>
 						<h2 class="muted">Your Posts</h2>
 						<hr>
 

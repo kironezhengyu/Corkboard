@@ -20,8 +20,6 @@
 		</div>
 		<div class="span8">
 			<div class="well">
-				<button type="button" class="close"><i class="icon-refresh"></i></button>
-				<hr>
 				<div class="row-fluid pagination-centered">
 					<div class="span12">
 						<div class="well">

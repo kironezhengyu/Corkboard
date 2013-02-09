@@ -18,7 +18,7 @@
             <input type="text" class="search-query" placeholder="Search">
            </form>
             <ul class="nav pull-right">
-				<li><a href="#create_post" role="button" data-backdrop="false" data-toggle="modal" >Post</a></li>
+				<li><a href="#create_post" role="button" data-backdrop="false" data-toggle="modal" ><i class="icon-edit"></i></a></li>
 				<div id="create_post" class="modal hide" >
 				  <div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -42,6 +42,7 @@
 				</div>
 			 <li><a href="<?php echo base_url('index.php/friend');?>">Friends</a></li>
 			 <li><a href="<?php echo base_url('index.php/like');?>">Likes</a></li>
+			 <li><a href="<?php echo base_url('index.php/pinned');?>">Pinned</a></li>
 			 <li class="divider-vertical"></li>
              <li><a href="home/logout">Log Out</a></li>
             </ul>
