@@ -13,24 +13,33 @@
             <li class="active"><a href="<?php echo base_url('index.php/home') ?>">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="nav-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
           </ul>
            <form class="navbar-search pull-left">
             <input type="text" class="search-query" placeholder="Search">
            </form>
             <ul class="nav pull-right">
+				<li><a href="#create_post" role="button" data-backdrop="false" data-toggle="modal" >Post</a></li>
+				<div id="create_post" class="modal hide" >
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h3 id="myModalLabel">Create a new Post</h3>
+				  </div>
+				  <div class="modal-body">
+					<?php echo validation_errors(); ?>
+					<?php echo form_open('home/addPost') ?>
+						<label for="post_topic"><strong>Post Topic:</strong></label>
+						<input class="input-large" name="topic" type="text" /><br />
+
+						<label for="post_initail_message"><strong>Initial Message:</strong></label>
+						<TEXTAREA class="input-large" name="initial_message"></TEXTAREA><br />
+
+						<label for="post_link"><strong>Attachment</strong></label>
+						<input class="input-large" name="post_link" type="text" /><br />
+
+						<input class="btn btn-primary btn-large" type="submit" name="submit" value="Post &raquo" /> 
+					</form>
+				  </div>
+				</div>
 			 <li><a href="<?php echo base_url('index.php/friend');?>">Friends</a></li>
 			 <li><a href="<?php echo base_url('index.php/like');?>">Likes</a></li>
 			 <li class="divider-vertical"></li>

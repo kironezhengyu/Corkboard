@@ -9,26 +9,7 @@
 				<h1>Welcome <?php echo $nickname; ?>!</h1>
 			</div>
 			<div class="row-fluid">
-				<div class="span4">
-					<div class="well well-small">
-						<?php echo validation_errors(); ?>
-						<?php echo form_open('home/addPost') ?>
-							<h2 class="muted">Create a new post.</h2>
-
-							<label for="post_topic"><strong>Post Topic:</strong></label>
-							<input class="input-large" name="topic" type="text" /><br />
-
-							<label for="post_initail_message"><strong>Initial Message:</strong></label>
-							<TEXTAREA class="input-large" name="initial_message"></TEXTAREA><br />
-
-							<label for="post_link"><strong>Attachment</strong></label>
-							<input class="input-large" name="post_link" type="text" /><br />
-
-							<input class="btn btn-primary btn-large" type="submit" name="submit" value="Post &raquo" /> 
-						</form>
-					</div>
-				</div>
-				<div class="span8">
+				<div class="span12">
 					<div class="well">
 						<button type="button" class="close"><i class="icon-refresh"></i></button>
 						<h2 class="muted">Your Posts</h2>
@@ -70,59 +51,6 @@
 							</ul>
 					</div>
 				</div>
-			</div>
-			<div class="well">
-				<button type="button" class="close"><i class="icon-refresh"></i></button>
-				<h2 class="muted">Pinned Posts</h2>
-				<hr>
-
-				<div class="row-fluid">
-
-					<div class="span4">
-						<div class="well">
-							<button type="button" class="close"><i class="icon-bookmark"></i></button>
-							<h3>Pinned Post 1</h3>
-							<div class="pinned1">Some content will be posted here.</div>
-							<br>
-							<div class="input-append">
-								<input class="input-large" id="comment" type="text">
-								<button class="btn" type="submit"> &raquo </button>
-							</div>
-						</div>
-					</div>
-
-					<div class="span4">
-						<div class="well">
-							<button type="button" class="close"><i class="icon-bookmark"></i></button>
-							<h3>Pinned Post 2</h3>
-							<div class="pinned2">Some content will be posted here.</div>
-							<br>
-							<div class="input-append">
-								<input class="input-large" id="comment2" type="text">
-								<button class="btn" type="submit"> &raquo </button>
-							</div>
-						</div>
-					</div>
-
-					<div class="span4">
-						<div class="well">
-							<button type="button" class="close"><i class="icon-bookmark"></i></button>
-							<h3>Pinned Post 3</h3>
-							<p>Some content will be posted here.</p>
-							<br>
-							<div class="input-append">
-								<input class="input-large" id="comment" type="text">
-								<button class="btn" type="submit"> &raquo </button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<hr>
-				<form name="get_post" action="home/getpost/get_post">
-					<input type="submit" value="prev" name="submit" class = "btn"/>
-					<input type="submit" value="next" name="submit" class="btn" />
-				</form>
 			</div>
 		</div>
 	</div>
