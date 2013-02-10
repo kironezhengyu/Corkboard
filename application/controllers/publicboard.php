@@ -28,6 +28,24 @@
    		}
  		}
 
+		function addComment(){
+
+		$session_data = $this->session->userdata('logged_in');
+		$username = $session_data['username'];
+	
+		$this->load->helper('form');
+		$postID = $this->input->post('comment1_id');
+		$post = $this->input->post('comment1');
+		$this->communication_model->add_comments($postID, $post,$username);
+		
+
+		$session_data = $this->session->userdata('logged_in');
+		$data['username'] = $session_data['username'];
+		$data['nickname'] = $session_data['nickname'];
+    	$this->load->view('public_view', $data);
+	
+		}
+
 		function pin_post(){
 			$session_data = $this->session->userdata('logged_in');
 			$username = $session_data['username'];
