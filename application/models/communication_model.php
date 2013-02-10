@@ -28,6 +28,13 @@ class communication_model extends CI_Model {
 		//$res->close();
 		$mysqli->close();
 
+        $mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+		
+		$res = $mysqli->query("call like_post(".$this->db->escape($pid).", ".$this->db->escape($username).")" );
+		
+		$mysqli->close();
+	
+
 
 		//return $this->db->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($msg_content).",".$this->db->escape($pid).",".$this->db->escape($attachment_link).");");
 	}
@@ -45,6 +52,7 @@ class communication_model extends CI_Model {
 			$result[$count]['userName']= $row['user_commenting'];
 			$result[$count]['topic'] = $row['topic'];
 			$result[$count]['content']= $row['content'];
+			$result[$count]['num_likes']= $row['num_likes'];
 			$count++;
 		}		
 		return $result;
