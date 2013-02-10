@@ -20,7 +20,7 @@
 
 						<hr>
 							<ul class="pager">
-								<li>><a class="prev_btn" href="#">Previous</a></li>
+								<li><a class="prev_btn" href="#">Previous</a></li>
 								<li><a class="next_btn" href="#">Next</a></li>
 							</ul>
 					</div>
@@ -51,9 +51,10 @@
 						echo $base;
 				?>;
  var current_offset = 0;
+ var self_post_fetch_amt = 2;
 
  var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
- 	return $.ajax( { url: base_url + "/index.php/home/fetch_posts/" + current_offset
+ 	return $.ajax( { url: base_url + "/index.php/home/fetch_posts/" + current_offset*fetch_amt + "/" + fetch_amt
  			, success : function(d){
 			    var data = JSON.parse(d);
  				var offset = current_offset; 
@@ -68,8 +69,9 @@
 				var postID;
 				var post;
 				var fetched_posts = "";
+				var ret = "";
 				
-				while (k < fetch_amt){ // Post loop
+				while (k < fetch_amt && i < data["posts"].length){ // Post loop
 					j = i;
 					topic = data["posts"][i]['topic'];
 					postID = data["posts"][i]['postId'];
@@ -84,7 +86,6 @@
 										+"<br>";
 						j++;
 					} // End of message loop
-					console.log(messages);
 					
 					post = "<div class='span" + span_length + "'>" +
 								"<div class='well'>" +
@@ -101,10 +102,12 @@
 							"</div>";
 					
 					fetched_posts += post;
+					ret += messages;
 					i += j;
 					k++;
 				} // End of post loop
 				$(post_loc).html(fetched_posts);
+				return ret;
  			}
  			, error : function(){
  				$(post_loc).empty();
@@ -119,11 +122,16 @@
 	if(current_offset < 0){
 	  current_offset =0;
 	}
- 	ajax_fetch(base_url, current_offset, 1, "#users_post_area");
+ 	ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
  });
  $('.next_btn').on("click", function(){
  	current_offset++;
- 	ajax_fetch(base_url, current_offset, 1, "#users_post_area");
+	var success;
+ 	success = ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
+	if (success == ""){
+		current_offset = 0;
+		ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
+	}
  });
  $(document).on("click", ".announce", function(){
 	var cookie_uname = '<?php echo $username ?>';
@@ -136,7 +144,7 @@
 		$('#friend_conf').modal('show');
 	}
  });
- ajax_fetch(base_url, 0, 1, "#users_post_area"); 
+ ajax_fetch(base_url, 0, self_post_fetch_amt, "#users_post_area"); 
 });
 </script>
 

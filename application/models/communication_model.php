@@ -32,9 +32,9 @@ class communication_model extends CI_Model {
 		//return $this->db->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($msg_content).",".$this->db->escape($pid).",".$this->db->escape($attachment_link).");");
 	}
 	
-	public function fetch_posts($username, $latest_offset)
+	public function fetch_posts($username, $latest_offset, $fetch_amt)
 	{
-		$query = $this->db->query("call fetch_post_proc(".$this->db->escape($username).", ".$this->db->escape($latest_offset).")");
+		$query = $this->db->query("call fetch_post_proc(".$this->db->escape($username).", ".$this->db->escape($latest_offset).", ".$this->db->escape($fetch_amt).")");
 		
 		$count =0;
 		$result = array();
@@ -42,7 +42,7 @@ class communication_model extends CI_Model {
 		{	 
 			$result[$count]['postId']= $row['postId'];
 			$result[$count]['nickname']= $row['nickname'];
-			$result[$count]['userName']= $row['userName'];
+			$result[$count]['userName']= $row['user_commenting'];
 			$result[$count]['topic'] = $row['topic'];
 			$result[$count]['content']= $row['content'];
 			$count++;

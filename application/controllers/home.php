@@ -16,7 +16,7 @@ class Home extends CI_Controller {
      $session_data = $this->session->userdata('logged_in');
      $data['username'] = $session_data['username'];
 	 $data['nickname'] = $session_data['nickname'];
-    $data['posts'] = $this->communication_model->fetch_posts($data['username'], 0);
+     $data['posts'] = $this->communication_model->fetch_posts($data['username'], 0, 1);
      $this->load->view('home_view', $data);
    }
    else
@@ -29,12 +29,13 @@ class Home extends CI_Controller {
  function fetch_posts(){
      $data = array();
      $data['error'] = 0; 
-     if($this->session->userdata('logged_in') && intval($this->uri->segment(3)) > -1)
-     { 
+     if($this->session->userdata('logged_in') && intval($this->uri->segment(3)) > -1 && intval($this->uri->segment(4)) > -1)
+     {
      $offset = intval($this->uri->segment(3));
+	 $fetch_amt = intval($this->uri->segment(4));
      $session_data = $this->session->userdata('logged_in');
      $username = $session_data['username'];
-     $data['posts'] = $this->communication_model->fetch_posts($username, $offset );
+     $data['posts'] = $this->communication_model->fetch_posts($username, $offset, $fetch_amt);
 	 echo json_encode($data);
      return json_encode($data);   
    }

@@ -13,15 +13,12 @@ BEGIN
 			SET MESSAGE_TEXT = 'Username does not exist.';
 	END IF;
 
-	DECLARE pid INT(30);
-	SET pid = (SELECT postId
-	FROM post
-	WHERE userName = uname
-	ORDER BY postId DESC
-	LIMIT 1 OFFSET latest_offset);
-
 	SELECT *
-	FROM post_view
-	WHERE postId = pid;
+	FROM post_view pv JOIN (SELECT postId FROM post
+							WHERE userName = uname
+							ORDER BY postId DESC
+							LIMIT fetch_amt OFFSET latest_offset) pid
+		ON pv.postId = pid.postId
+	ORDER BY pid.postId DESC;
 END $$
 DELIMITER ;
