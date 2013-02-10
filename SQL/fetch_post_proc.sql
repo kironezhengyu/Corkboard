@@ -1,5 +1,5 @@
 DELIMITER $$
-CREATE PROCEDURE fetch_post_proc(IN uname VARCHAR(100), IN latest_offset MEDIUMINT)
+CREATE PROCEDURE fetch_post_proc(IN uname VARCHAR(100), IN latest_offset MEDIUMINT, IN fetch_amt MEDIUMINT)
 BEGIN
 	IF uname IS NULL
 	THEN
