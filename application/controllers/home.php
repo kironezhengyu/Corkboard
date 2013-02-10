@@ -26,6 +26,39 @@ class Home extends CI_Controller {
    }
  }
 
+ function unpin_post(){
+	$session_data = $this->session->userdata('logged_in');
+	$username = $session_data['username'];
+	$pid = $this->input->post('comment1_id');
+	$this->communication_model->unpin_post($username, $pid);
+
+	$session_data = $this->session->userdata('logged_in');
+	$data['username'] = $session_data['username'];
+	$data['nickname'] = $session_data['nickname'];
+	$this->load->view('home_view', $data);
+     		
+ }
+
+ function fetch_public_posts(){
+     $data = array();
+     $data['error'] = 0; 
+     if($this->session->userdata('logged_in') && intval($this->uri->segment(3)) > -1 && intval($this->uri->segment(4)) > -1)
+     {
+     $offset = intval($this->uri->segment(3));
+	 $fetch_amt = intval($this->uri->segment(4));
+     $session_data = $this->session->userdata('logged_in');
+     $data['posts'] = $this->communication_model->fetch_public_posts($offset, $fetch_amt);
+	 echo json_encode($data);
+     return json_encode($data);   
+   }
+   else
+   {
+     $data['error'] =1;
+     return json_encode($data);
+   }
+
+ }
+
  function fetch_posts(){
      $data = array();
      $data['error'] = 0; 
@@ -36,6 +69,28 @@ class Home extends CI_Controller {
      $session_data = $this->session->userdata('logged_in');
      $username = $session_data['username'];
      $data['posts'] = $this->communication_model->fetch_posts($username, $offset, $fetch_amt);
+	 echo json_encode($data);
+     return json_encode($data);   
+   }
+   else
+   {
+     $data['error'] =1;
+     return json_encode($data);
+   }
+
+ }
+
+
+ function fetch_pinned_posts(){
+     $data = array();
+     $data['error'] = 0; 
+     if($this->session->userdata('logged_in') && intval($this->uri->segment(3)) > -1 && intval($this->uri->segment(4)) > -1)
+     {
+     $offset = intval($this->uri->segment(3));
+	 $fetch_amt = intval($this->uri->segment(4));
+     $session_data = $this->session->userdata('logged_in');
+     $username = $session_data['username'];
+     $data['posts'] = $this->communication_model->fetch_pinned_posts($username, $offset, $fetch_amt);
 	 echo json_encode($data);
      return json_encode($data);   
    }
