@@ -53,6 +53,7 @@ class communication_model extends CI_Model {
 			$result[$count]['topic'] = $row['topic'];
 			$result[$count]['content']= $row['content'];
 			$result[$count]['num_likes']= $row['num_likes'];
+			$result[$count]['link'] = $row['link'];
 			$count++;
 		}		
 		return $result;
@@ -74,6 +75,7 @@ class communication_model extends CI_Model {
 			$result[$count]['topic'] = $row['topic'];
 			$result[$count]['content']= $row['content'];
 			$result[$count]['num_likes']= $row['num_likes'];
+			$result[$count]['link'] = $row['link'];
 			$count++;
 		}		
 		return $result;
@@ -95,6 +97,7 @@ class communication_model extends CI_Model {
 			$result[$count]['topic'] = $row['topic'];
 			$result[$count]['content']= $row['content'];
 			$result[$count]['num_likes']= $row['num_likes'];
+			$result[$count]['link'] = $row['link'];
 			$count++;
 		}		
 		return $result;
@@ -103,7 +106,7 @@ class communication_model extends CI_Model {
 	
 	public function add_comments($comment_id, $comment,$username){ 
 		
-		$link = "test";
+		$link = "";
 		
 		$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
 		
