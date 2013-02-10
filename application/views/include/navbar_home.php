@@ -44,7 +44,7 @@
 			 <li><a href="<?php echo base_url('index.php/like');?>">Likes</a></li>
 			 <li><a href="<?php echo base_url('index.php/publicboard');?>">Public</a></li>
 			 <li class="divider-vertical"></li>
-             <li><a href="home/logout">Log Out</a></li>
+             <li><a href="<?php echo base_url('index.php/home/logout');?>">Log Out</a></li>
             </ul>
          <!--  <form class="navbar-form pull-right">
             <input class="span2" type="text" placeholder="Email">
