@@ -70,11 +70,12 @@
 				var post;
 				var fetched_posts = "";
 				var ret = "";
-				
+				var num_likes = 0;
 				while (k < fetch_amt && i < data["posts"].length){ // Post loop
 					j = i;
 					topic = data["posts"][i]['topic'];
 					postID = data["posts"][i]['postId'];
+					num_likes = data["posts"][i]['num_likes'];
 					messages = "";
 					post = "";
 					
@@ -90,7 +91,7 @@
 					post = "<div class='span" + span_length + "'>" +
 								"<div class='well'>" +
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
-											postID + "'> - <i class='icon-thumbs-up'></i></a></h3>" +
+											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<br>" + messages + "<br>" +
 									"<div class='input-append'>" +
 										'<?php echo form_open('home/addComment'); ?>' +
@@ -144,7 +145,7 @@
 		$('#friend_conf').modal('show');
 	}
  });
- ajax_fetch(base_url, 0, self_post_fetch_amt, "#users_post_area"); 
+ ajax_fetch(base_url, 0, self_post_fetch_amt, '#users_post_area'); 
 });
 </script>
 
