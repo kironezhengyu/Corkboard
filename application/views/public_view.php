@@ -65,6 +65,7 @@
 				var k = 0;
 				var j = 0;
 				var messages = "";
+				var attachment;
 				var topic;
 				var postID;
 				var post;
@@ -81,10 +82,16 @@
 					
 					
 					while (j < data["posts"].length && topic == data["posts"][j]['topic']){ // Message loop
+						attachment = data["posts"][j]['link'];
 						messages = messages + "<b>" + "<a class='announce btn btn-link' data-toggle='modal' data-uname='" + data["posts"][j]['userName']
 										+ "' data-nickname='" + data["posts"][j]['nickname'] + "'>"
-										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content']
-										+"<br>";
+										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content'];
+
+						if (attachment==""){
+							messages += "<br>";}
+						else{
+							messages += "  <i><a href='" + attachment + "'>attachment</a></i><br>"
+						}
 						j++;
 					} // End of message loop
 					
@@ -103,7 +110,7 @@
 
 									"<br>" + messages + "<br>" +
 									"<div class='input-append'>" +
-										'<?php echo form_open('home/addComment'); ?>' +
+										'<?php echo form_open('publicboard/addComment'); ?>' +
 										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
 										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
 											"<button class='btn' type='submit'> &raquo </button></form>" +

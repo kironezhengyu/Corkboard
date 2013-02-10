@@ -87,6 +87,7 @@
 				var topic;
 				var postID;
 				var post;
+				var attachment;
 				var fetched_posts = "";
 				var ret = "";
 				var num_likes = 0;
@@ -99,11 +100,22 @@
 					post = "";
 					
 					
+					
+					
 					while (j < data["posts"].length && topic == data["posts"][j]['topic']){ // Message loop
+						attachment = data["posts"][j]['link'];
 						messages = messages + "<b>" + "<a class='announce btn btn-link' data-toggle='modal' data-uname='" + data["posts"][j]['userName']
 										+ "' data-nickname='" + data["posts"][j]['nickname'] + "'>"
-										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content']
-										+"<br>";
+										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content'];
+
+						if (attachment==""){
+							messages += "<br>";}
+						else{
+							messages += "  <i><a href='" + attachment + "'>attachment</a></i><br>"
+						}
+
+
+										
 						j++;
 					} // End of message loop
 					
@@ -196,6 +208,7 @@
 				var topic;
 				var postID;
 				var post;
+				var attachment;
 				var fetched_posts = "";
 				var ret = "";
 				var num_likes = 0;
@@ -209,10 +222,16 @@
 					
 					
 					while (j < data["posts"].length && topic == data["posts"][j]['topic']){ // Message loop
+						attachment = data["posts"][j]['link'];
 						messages = messages + "<b>" + "<a class='announce btn btn-link' data-toggle='modal' data-uname='" + data["posts"][j]['userName']
 										+ "' data-nickname='" + data["posts"][j]['nickname'] + "'>"
-										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content']
-										+"<br>";
+										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content'];
+
+						if (attachment==""){
+							messages += "<br>";}
+						else{
+							messages += "  <i><a href='" + attachment + "'>attachment</a></i><br>"
+						}
 						j++;
 					} // End of message loop
 					
