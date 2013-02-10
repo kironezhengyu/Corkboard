@@ -78,8 +78,8 @@ function addPost()
 
 function addComment(){
 
-$session_data = $this->session->userdata('logged_in');
-		$username = $session_data['username'];
+	$session_data = $this->session->userdata('logged_in');
+	$username = $session_data['username'];
 
 	$this->load->helper('form');
 	$postID = $this->input->post('comment1_id');
