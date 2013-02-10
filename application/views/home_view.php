@@ -95,7 +95,7 @@
 									"<div class='input-append'>" +
 										'<?php echo form_open('home/addComment'); ?>' +
 										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='' />" +
+										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
 											"<button class='btn' type='submit'> &raquo </button></form>" +
 									"</div>" +
 								"</div>" +
