@@ -58,6 +58,48 @@ class communication_model extends CI_Model {
 		return $result;
 
 	}
+
+
+	public function fetch_pinned_posts($username, $latest_offset, $fetch_amt)
+	{
+		$query = $this->db->query("call fetch_pinned_post(".$this->db->escape($username).", ".$this->db->escape($latest_offset).", ".$this->db->escape($fetch_amt).")");
+		
+		$count =0;
+		$result = array();
+		foreach($query->result_array() as $row)
+		{	 
+			$result[$count]['postId']= $row['postId'];
+			$result[$count]['nickname']= $row['nickname'];
+			$result[$count]['userName']= $row['user_commenting'];
+			$result[$count]['topic'] = $row['topic'];
+			$result[$count]['content']= $row['content'];
+			$result[$count]['num_likes']= $row['num_likes'];
+			$count++;
+		}		
+		return $result;
+
+	}
+
+
+		public function fetch_public_posts($latest_offset, $fetch_amt)
+	{
+		$query = $this->db->query("call fetch_public_post(".$this->db->escape($latest_offset).", ".$this->db->escape($fetch_amt).")");
+		
+		$count =0;
+		$result = array();
+		foreach($query->result_array() as $row)
+		{	 
+			$result[$count]['postId']= $row['postId'];
+			$result[$count]['nickname']= $row['nickname'];
+			$result[$count]['userName']= $row['user_commenting'];
+			$result[$count]['topic'] = $row['topic'];
+			$result[$count]['content']= $row['content'];
+			$result[$count]['num_likes']= $row['num_likes'];
+			$count++;
+		}		
+		return $result;
+
+	}
 	
 	public function add_comments($comment_id, $comment,$username){ 
 		
@@ -68,6 +110,15 @@ class communication_model extends CI_Model {
 		$res = $mysqli->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($comment).",".$this->db->escape($comment_id).",".$this->db->escape($link).");");
 		
 		$mysqli->close();
+	}
+
+
+	public function pin_post($username, $postId){
+		$this->db->query("call pin_post(".$this->db->escape($username).",".$this->db->escape($postId).");");
+	}
+
+	public function unpin_post($username, $postId){
+		$this->db->query("call unpin_post(".$this->db->escape($username).",".$this->db->escape($postId).");");
 	}
 	
 	public function add_friend($self,$friend ){
