@@ -3,15 +3,13 @@
 
 <script>
 var username;
-
- $(function(){
- var base_url = <?php $base = "'" . base_url('') . "'";
+var base_url = <?php $base = "'" . base_url('') . "'";
 						echo $base;
 				?>;
- var current_offset = 0;
- var self_post_fetch_amt = 2;
+var current_offset = 0;
+var self_post_fetch_amt = 2;
 
- var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname){
+var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname){
  	return $.ajax( { url: base_url + "/index.php/friend/fetch_posts/" + current_offset*fetch_amt + "/" + fetch_amt + "/" + uname
  			, success : function(d){
 			    var data = JSON.parse(d);
@@ -73,10 +71,15 @@ var username;
 			, type: 'GET'
 			, async: false
  		});
+
  }
+ var setUname = function (friend_uname){
+	username = friend_uname;
+	ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area", username);
+};
+
+ $(function(){
  
-
-
  $('.prev_btn').on("click", function(){
  	current_offset--;
 	if(current_offset < 0){
@@ -106,10 +109,7 @@ var username;
  }); 
 });
 
-function setUname(friend_uname){
-	username = friend_uname;
-	ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area", username);
-}
+
 </script>
 
 <div class="container">
@@ -123,7 +123,7 @@ function setUname(friend_uname){
 				$i = 0;
 				$numFriends= sizeof($friends);
 				for ($i=0; $i < $numFriends; $i++){
-					echo '<h3><a onclick=\'' . 'setUname("'.$friends[$i]['friend_user_name'].'")\'>' . $friends[$i]["nickname"] . "&raquo</a></h3>";
+					echo '<h3><a href="#" class="friends" id="' .  $friends[$i]['friend_user_name'] . '"\'>' . $friends[$i]["nickname"] . "&raquo</a></h3>";
 					//echo '<h3><a onclick="' + 'setUname('.$friends[$i]["friend_user_name"].')' + '">' . $friends[$i]["nickname"] . '  &raquo</a></h3>';
 				}
 				?>
@@ -144,6 +144,15 @@ function setUname(friend_uname){
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+var friends = $('.friends');
+$.each(friends, function(){
+	jQuery(this).on('click' , function(){
+		setUname(this.id);
+	});
+});
+</script>
 
 <!-- Modal -->
 	<div id="friend_conf" class="modal hide" >
