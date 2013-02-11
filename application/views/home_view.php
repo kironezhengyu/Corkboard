@@ -20,8 +20,7 @@
 
 						<hr>
 							<ul class="pager">
-								<li><a class="prev_btn" href="#">Previous</a><div class="loader" style="display:none;"> <img src="<?php echo base_url('assets/img/loader.gif'); ?>"></div></li>
-   
+								<li><a class="prev_btn" href="#">Previous</a></li>
 								<li><a class="next_btn" href="#">Next</a></li>
 							</ul>
 					</div>
@@ -65,9 +64,6 @@
 	
 </div>
 
-   
-
-
 <script>
  $(function(){
  var base_url = <?php $base = "'" . base_url('') . "'";
@@ -75,11 +71,10 @@
 				?>;
  var current_offset = 0;
  var self_post_fetch_amt = 2;
-var loader = $('.loader');
+
  var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
  	return $.ajax( { url: base_url + "/index.php/home/fetch_posts/" + current_offset*fetch_amt + "/" + fetch_amt
  			, success : function(d){
- 				 loader.hide();
 			    var data = JSON.parse(d);
  				var offset = current_offset; 
 				$(post_loc).empty();
@@ -155,7 +150,6 @@ var loader = $('.loader');
  		});
  }
  $('.prev_btn').on("click", function(){
-        loader.show();
  	current_offset--;
 	if(current_offset < 0){
 	  current_offset =0;
@@ -163,7 +157,6 @@ var loader = $('.loader');
  	ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
  });
  $('.next_btn').on("click", function(){
- 	loader.show();
  	current_offset++;
 	var success;
  	success = ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
@@ -203,7 +196,6 @@ var loader = $('.loader');
  var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
  	return $.ajax( { url: base_url + "/index.php/home/fetch_pinned_posts/" + current_offset*fetch_amt + "/" + fetch_amt
  			, success : function(d){
- 				loader.hide();
 			    var data = JSON.parse(d);
  				var offset = current_offset; 
 				$(post_loc).empty();
@@ -283,7 +275,6 @@ var loader = $('.loader');
  		});
  }
  $('.prev_btn').on("click", function(){
- 	loader.show();
  	current_offset--;
 	if(current_offset < 0){
 	  current_offset =0;
@@ -291,7 +282,6 @@ var loader = $('.loader');
  	ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
  });
  $('.next_btn').on("click", function(){
- 	loader.show();
  	current_offset++;
 	var success;
  	success = ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
