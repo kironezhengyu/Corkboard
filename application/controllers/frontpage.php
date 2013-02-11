@@ -6,6 +6,8 @@ class Frontpage extends Main_Controller {
       $this->load->view('include/header');
       $this->load->view('frontpage');
       $this->load->view('include/footer');
+
+   
 	}
    
 }

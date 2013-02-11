@@ -9,8 +9,14 @@
 
 		 function index()
 		 {
-		   
-		   $this->load->view('about_view');
+
+		 	$this->load->view('include/header');
+		 	// $this->load->view('include/navbar');
+		 	
+	
+		$this->load->view('about_view');
+		
+		$this->load->view('include/footer');
 		 }
 
 	}
