@@ -41,7 +41,6 @@
 				  </div>
 				</div>
 			 <li><a href="<?php echo base_url('index.php/friend');?>">Friends</a></li>
-			 <li><a href="<?php echo base_url('index.php/like');?>">Likes</a></li>
 			 <li><a href="<?php echo base_url('index.php/publicboard');?>">Public</a></li>
 			 <li class="divider-vertical"></li>
              <li><a href="<?php echo base_url('index.php/home/logout');?>">Log Out</a></li>
