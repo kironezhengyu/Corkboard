@@ -145,6 +145,18 @@ function setUname(friend_uname){
 	</div>
 </div>
 
-
+<!-- Modal -->
+	<div id="friend_conf" class="modal hide" >
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 class="uname_m" >Username</h3>
+	  </div>
+	  <div class="modal-body" id="friend_body">
+		<p>They will be added to your list, but you won't be added to theirs. If you want them to follow you, make them like you!</p>
+	  </div>
+	  <div class="modal-footer" id="friend_add">
+		<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
 
 <?php $this->load->view('include/footer')?>

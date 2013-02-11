@@ -1,6 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
 -- Generation Time: Feb 10, 2013 at 10:22 AM
