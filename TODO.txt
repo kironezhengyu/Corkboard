@@ -1,0 +1,16 @@
+TODO:
+Likes not displayed correctly.
+Likes not displayed at all on the friends page
+Friend posts not loaded automatically on clicking their names
+Adding comments on the friend page loads the home page.
+Commenting on the friend page doesn't work.
+Pinning posts
+Searching
+Remove about
+Add attachments inline
+Make the navbar_home equivalent to the regular navbar
+
+
+NICITIES
+Make the navbar flexible depending on whether or not the user is logged in.
+Display the welcome only once
