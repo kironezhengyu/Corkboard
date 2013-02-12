@@ -1,9 +1,20 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2013 at 10:22 AM
+-- Generation Time: Feb 12, 2013 at 03:46 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `corkboard`
@@ -517,7 +528,10 @@ BEGIN
 
 
 
-    IF (select count(*) from post where postId=pid and userName=uname) = 0 then insert into board_post(userName, postId) values (uname, pid);
+    IF (select count(*) from post where postId=pid and userName=uname) = 0 
+    and (select count(*) from board_post where userName=uname and postId=pid)=0
+    
+    then insert into board_post(userName, postId) values (uname, pid);
 
     END IF;
 
@@ -657,6 +671,15 @@ VALUES(username, nickname, password);
 
 END$$
 
+DROP PROCEDURE IF EXISTS `removeFriend`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `removeFriend`(IN self VARCHAR(100), IN friend VARCHAR(100))
+BEGIN
+
+
+	delete from friends where userName=self and friend_user_name=friend;
+
+END$$
+
 DROP PROCEDURE IF EXISTS `search_post_proc`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `search_post_proc`(IN `keyword` VARCHAR(50))
 BEGIN
@@ -731,7 +754,8 @@ INSERT INTO `attachment` (`messageId`, `link`) VALUES
 (15, ''),
 (16, 'http://www.xxx.com'),
 (17, ''),
-(18, '');
+(18, ''),
+(19, '');
 
 -- --------------------------------------------------------
 
@@ -752,7 +776,9 @@ CREATE TABLE IF NOT EXISTS `board_post` (
 --
 
 INSERT INTO `board_post` (`userName`, `postId`) VALUES
-('527bd5b5d689e2c32ae974c6229ff785', 6);
+('18126e7bd3f84b3f3e4df094def5b7de', 6),
+('527bd5b5d689e2c32ae974c6229ff785', 6),
+('18126e7bd3f84b3f3e4df094def5b7de', 10);
 
 -- --------------------------------------------------------
 
@@ -790,6 +816,8 @@ INSERT INTO `likes` (`postId`, `userName`) VALUES
 (6, '18126e7bd3f84b3f3e4df094def5b7de'),
 (7, '18126e7bd3f84b3f3e4df094def5b7de'),
 (8, '18126e7bd3f84b3f3e4df094def5b7de'),
+(10, '18126e7bd3f84b3f3e4df094def5b7de'),
+(11, '18126e7bd3f84b3f3e4df094def5b7de'),
 (6, '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
 (7, '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
 (8, '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
@@ -813,7 +841,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`messageId`),
   KEY `postId` (`postId`),
   KEY `userName` (`userName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `message`
@@ -828,7 +856,8 @@ INSERT INTO `message` (`postId`, `messageId`, `content`, `ts`, `userName`) VALUE
 (9, 15, 'm1', '2013-02-10 09:17:18', '527bd5b5d689e2c32ae974c6229ff785'),
 (10, 16, 'm2', '2013-02-10 09:17:38', '527bd5b5d689e2c32ae974c6229ff785'),
 (9, 17, 'hey john', '2013-02-10 09:18:34', '18126e7bd3f84b3f3e4df094def5b7de'),
-(7, 18, 'hi jack', '2013-02-10 09:21:48', '18126e7bd3f84b3f3e4df094def5b7de');
+(7, 18, 'hi jack', '2013-02-10 09:21:48', '18126e7bd3f84b3f3e4df094def5b7de'),
+(11, 19, 'mike1', '2013-02-12 02:42:09', '18126e7bd3f84b3f3e4df094def5b7de');
 
 -- --------------------------------------------------------
 
@@ -844,7 +873,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`postId`),
   KEY `userName` (`userName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `post`
@@ -855,7 +884,8 @@ INSERT INTO `post` (`userName`, `postId`, `topic`, `ts`) VALUES
 ('4ff9fc6e4e5d5f590c4f2134a8cc96d1', 7, 'jackpt2', '2013-02-10 09:14:44'),
 ('4ff9fc6e4e5d5f590c4f2134a8cc96d1', 8, 'jackpt3', '2013-02-10 09:14:59'),
 ('527bd5b5d689e2c32ae974c6229ff785', 9, 'johnpt1', '2013-02-10 09:17:17'),
-('527bd5b5d689e2c32ae974c6229ff785', 10, 'johnpt2', '2013-02-10 09:17:37');
+('527bd5b5d689e2c32ae974c6229ff785', 10, 'johnpt2', '2013-02-10 09:17:37'),
+('18126e7bd3f84b3f3e4df094def5b7de', 11, 'mikept1', '2013-02-12 02:42:08');
 
 -- --------------------------------------------------------
 
@@ -970,3 +1000,6 @@ ALTER TABLE `message`
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`);
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
