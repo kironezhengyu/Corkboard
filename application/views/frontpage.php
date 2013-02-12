@@ -35,7 +35,7 @@
     
     <div class="span4">
       <img src="http://lorempixel.com/400/300/transport/<?php echo rand(1,10);?>" />
-      <h4>Explore 'n' Social </h4>
+      <h4>Explore 'n' Socialize </h4>
       <p>Check out the latest news among your friends!</p>
     
   </div>
