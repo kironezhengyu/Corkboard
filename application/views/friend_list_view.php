@@ -109,6 +109,18 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 		$('#friend_conf').modal('show');
 	}
  }); 
+
+ $(document).on("click", ".declare", function(){
+	var cookie_uname = '<?php echo $username ?>';
+    var uname = $(this).data('uname');
+	if (uname != cookie_uname) {
+		var nickname = $(this).data('nickname');
+		var removefriend = <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/removeFriend/" + uname;
+		$('.uname_m1').html("Do you wish to remove " + nickname + " from your friends list?");
+		$('#friend_remove').html("<a class='btn btn-primary' href='" + removefriend + "'> Confirm </a>");
+		$('#friend_conf1').modal('show');
+	}
+ }); 
 });
 
 
@@ -125,7 +137,7 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 				$i = 0;
 				$numFriends= sizeof($friends);
 				for ($i=0; $i < $numFriends; $i++){
-					echo '<h3><a href="#" class="friends" id="' .  $friends[$i]['friend_user_name'] . '"\'>' . $friends[$i]["nickname"] . "&raquo</a></h3>";
+					echo '<p><i class="declare icon-remove"  data-uname="'. $friends[$i]['friend_user_name']  .'"  data-nickname="'.$friends[$i]["nickname"].'"></i>  &emsp;   <a href="#" class="friends" id="' .  $friends[$i]['friend_user_name'] . '"\'><font size="6">' . $friends[$i]["nickname"] . "&raquo</font></a></p>";
 					//echo '<h3><a onclick="' + 'setUname('.$friends[$i]["friend_user_name"].')' + '">' . $friends[$i]["nickname"] . '  &raquo</a></h3>';
 				}
 				?>
@@ -169,5 +181,19 @@ $.each(friends, function(){
 		<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
+	
+	<div id="friend_conf1" class="modal hide" >
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 class="uname_m1" >Username</h3>
+	  </div>
+	  <div class="modal-body" id="friend_body">
+		<p>They will be added to your list, but you won't be added to theirs. If you want them to follow you, make them like you!</p>
+	  </div>
+	  <div class="modal-footer" id="friend_remove">
+		<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+
 
 <?php $this->load->view('include/footer')?>
