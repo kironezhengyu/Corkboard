@@ -10,9 +10,19 @@
         <a class="brand" href="<?php echo base_url('') ?>">CorkBoard</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="<?php echo base_url('index.php/home') ?>">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="button"><a href="<?php echo base_url('index.php/home') ?>">Home</a></li>
+            <li class="contact_popover">
+             <a href="#" role="button">About</a>
+              <script>
+              var options = {
+                placement : 'bottom'
+                , title : 'About corkboard'
+                , content : 'CorkBoard is a database project that designed to explore a new way to communicate'
+              }
+              jQuery('.contact_popover').popover(options);           </script>
+            </li>
+
+              <li  class= "button"><a href="<?php echo base_url('index.php/about') ?>">Contact</a></li>
           </ul>
            <form class="navbar-search pull-left">
             <input type="text" class="search-query" placeholder="Search">

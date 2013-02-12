@@ -27,14 +27,7 @@
             </li>
 
               <li  class= "button"><a href="<?php echo base_url('index.php/about') ?>">Contact</a></li>
-
-
-
-
           </ul>
-           <form class="navbar-search pull-left">
-            <input type="text" class="search-query" placeholder="Search">
-           </form>
           <ul class="nav pull-right">
         <li><a href="<?php echo base_url('index.php/signUp')?>">Sign Up</a></li>
         <li class="divider-vertical"></li>

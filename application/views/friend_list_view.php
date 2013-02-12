@@ -49,6 +49,11 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 								"<div class='well'>" +
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/friend/like/') . '"'; ?> + "/" +
 											postID + "'> [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
+											"<div class='input-append'>" +
+										'<?php echo form_open('publicboard/pin_post'); ?>' +
+										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+											"<button class='pinning btn' type='submit'> pin </button></form>" +
+									"</div>" +
 									"<br>" + messages + "<br>" +
 									"<div class='input-append'>" +
 										'<?php echo form_open('friend/addComment'); ?>' +
