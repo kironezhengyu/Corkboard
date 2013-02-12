@@ -155,9 +155,27 @@ function addFriend($friend){
      $this->communication_model->add_friend($self,$friend );
 
 			$session_data = $this->session->userdata('logged_in');
+	$friend = $this->communication_model->getFriend($self);
+	$data["friends"] = $friend;
 	$data['username'] = $session_data['username'];
 	$data['nickname'] = $session_data['nickname'];
-    $this->load->view('home_view', $data);
+    $this->load->view('friend_list_view', $data);
+
+		}
+
+
+function removeFriend($friend){
+	
+     $session_data = $this->session->userdata('logged_in');
+     $self = $session_data['username'];
+     $this->communication_model->remove_friend($self,$friend );
+
+			$session_data = $this->session->userdata('logged_in');
+	$friend = $this->communication_model->getFriend($self);
+	$data["friends"] = $friend;
+	$data['username'] = $session_data['username'];
+	$data['nickname'] = $session_data['nickname'];
+    $this->load->view('friend_list_view', $data);
 
 		}
 	
