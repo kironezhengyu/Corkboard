@@ -24,6 +24,7 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 				var topic;
 				var postID;
 				var post;
+				var num_likes = 0;
 				var fetched_posts = "";
 				var ret = "";
 				
@@ -31,6 +32,7 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 					j = i;
 					topic = data["posts"][i]['topic'];
 					postID = data["posts"][i]['postId'];
+					num_likes = data["posts"][i]['num_likes'];
 					messages = "";
 					post = "";
 					
@@ -45,13 +47,13 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 					
 					post = "<div class='span" + span_length + "'>" +
 								"<div class='well'>" +
-									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
-											postID + "'> - <i class='icon-thumbs-up'></i></a></h3>" +
+									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/friend/like/') . '"'; ?> + "/" +
+											postID + "'> [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<br>" + messages + "<br>" +
 									"<div class='input-append'>" +
-										'<?php echo form_open('home/addComment'); ?>' +
+										'<?php echo form_open('friend/addComment'); ?>' +
 										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='' />" +
+										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
 											"<button class='btn' type='submit'> &raquo </button></form>" +
 									"</div>" +
 								"</div>" +

@@ -70,7 +70,7 @@
 						echo $base;
 				?>;
  var current_offset = 0;
- var self_post_fetch_amt = 2;
+ var self_post_fetch_amt = 3;
 
  var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
  	return $.ajax( { url: base_url + "/index.php/home/fetch_posts/" + current_offset*fetch_amt + "/" + fetch_amt
@@ -190,10 +190,10 @@
  var base_url = <?php $base = "'" . base_url('') . "'";
 						echo $base;
 				?>;
- var current_offset = 0;
- var self_post_fetch_amt = 2;
+ var pinned_offset = 0;
+ var self_post_fetch_amt = 3;
 
- var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
+ var ajax_fetch_pinned = function(base_url , pinned_offset, fetch_amt, post_loc){
  	return $.ajax( { url: base_url + "/index.php/home/fetch_pinned_posts/" + current_offset*fetch_amt + "/" + fetch_amt
  			, success : function(d){
 			    var data = JSON.parse(d);

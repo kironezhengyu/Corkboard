@@ -1,16 +1,25 @@
 TODO:
 Likes not displayed correctly.
-Likes not displayed at all on the friends page
+	Can't like own post.
+	Likes not displayed at all on the friends page
 Friend posts not loaded automatically on clicking their names
 Adding comments on the friend page loads the home page.
 Commenting on the friend page doesn't work.
-Pinning posts
+Pinning posts from friend page
+Pinned posts not displaying
 Searching
 Remove about
 Add attachments inline
 Make the navbar_home equivalent to the regular navbar
+Remove "remember me" or make the cookie permanent.
+
 
 
 NICITIES
 Make the navbar flexible depending on whether or not the user is logged in.
 Display the welcome only once
+Check to see if somebody is on your friend list before popping up the modal.
+In the friending modal, provide link to load a potential friend's post so
+	that the user chan make sure they want to friend said person.
+Add searching by nickname
+	No need to add more parameters simply use the existing search to 

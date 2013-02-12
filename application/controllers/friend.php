@@ -22,6 +22,7 @@
 		   $data = array();
 		   $data["friends"] = $friend;
 		   $data['username'] = $username;
+		   $data['nickname'] = $session_data['nickname'];
 		   $this->load->view('friend_list_view',$data);
 		 }
 		 
@@ -44,6 +45,35 @@
 			 return json_encode($data);
 		   }
 
+		 }
+		 
+		 function like($postID){
+			 $session_data = $this->session->userdata('logged_in');
+			 $username = $session_data['username'];
+			 $this->communication_model->like($username,$postID );
+			 $session_data = $this->session->userdata('logged_in');
+			 $data['username'] = $session_data['username'];
+			 $data['nickname'] = $session_data['nickname'];
+			 $this->load->view('friend_list_view', $data);		
+		 }
+		 
+		 function addComment(){
+
+			 $session_data = $this->session->userdata('logged_in');
+			 $username = $session_data['username'];
+
+			 $this->load->helper('form');
+			 $postID = $this->input->post('comment1_id');
+			 $post = $this->input->post('comment1');
+			 $this->communication_model->add_comments($postID, $post,$username);
+			
+
+			 $session_data = $this->session->userdata('logged_in');
+			 $data['username'] = $session_data['username'];
+			 $data['nickname'] = $session_data['nickname'];
+			 $data["friends"] = $this->communication_model->getFriend($username);
+			 $this->load->view('friend_list_view', $data);
+		
 		 }
 	}
 
