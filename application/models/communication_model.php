@@ -133,7 +133,17 @@ class communication_model extends CI_Model {
 		$mysqli->close();
 
 	}
-	
+
+	public function remove_friend($self,$friend ){
+		
+			$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+		
+		$res = $mysqli->query("call removeFriend(".$this->db->escape($self).", ".$this->db->escape($friend).")" );
+		
+		$mysqli->close();
+
+	}
+
 	public function getFriend($username){
 		$query = $this->db->query("call fetch_friends(".$this->db->escape($username).")");
 		
