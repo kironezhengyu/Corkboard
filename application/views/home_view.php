@@ -39,8 +39,8 @@
 
 						<hr>
 							<ul class="pager">
-								<li><a class="prev_btn" href="#">Previous</a></li>
-								<li><a class="next_btn" href="#">Next</a></li>
+								<li><a class="prev_btn_pin" href="#">Previous</a></li>
+								<li><a class="next_btn_pin" href="#">Next</a></li>
 							</ul>
 					</div>
 				</div>
@@ -194,10 +194,10 @@
  var self_post_fetch_amt = 3;
 
  var ajax_fetch_pinned = function(base_url , pinned_offset, fetch_amt, post_loc){
- 	return $.ajax( { url: base_url + "/index.php/home/fetch_pinned_posts/" + current_offset*fetch_amt + "/" + fetch_amt
+ 	return $.ajax( { url: base_url + "/index.php/home/fetch_pinned_posts/" + pinned_offset*fetch_amt + "/" + fetch_amt
  			, success : function(d){
 			    var data = JSON.parse(d);
- 				var offset = current_offset; 
+ 				var offset = pinned_offset; 
 				$(post_loc).empty();
 				
 				var span_length = 12 / fetch_amt;
@@ -274,21 +274,21 @@
 			, async: false
  		});
  }
- $('.prev_btn').on("click", function(){
- 	current_offset--;
-	if(current_offset < 0){
-	  current_offset =0;
+ $('.prev_btn_pin').on("click", function(){
+ 	pinned_offset--;
+	if(pinned_offset < 0){
+	  pinned_offset =0;
 	}
- 	ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
+ 	ajax_fetch_pinned(base_url, pinned_offset, self_post_fetch_amt, "#pinned_post_area");
  });
- $('.next_btn').on("click", function(){
- 	current_offset++;
+ $('.next_btn_pin').on("click", function(){
+ 	pinned_offset++;
 	var success;
- 	success = ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
+ 	success = ajax_fetch_pinned(base_url, pinned_offset, self_post_fetch_amt, "#pinned_post_area");
 	if (success == ""){
-		current_offset = 0;
+		pinned_offset = 0;
 
-		ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
+		ajax_fetch_pinned(base_url, pinned_offset, self_post_fetch_amt, "#pinned_post_area");
 	}
  });
  $(document).on("click", ".announce", function(){
@@ -302,7 +302,7 @@
 		$('#friend_conf').modal('show');
 	}
  });
- ajax_fetch(base_url, 0, self_post_fetch_amt, '#pinned_post_area'); 
+ ajax_fetch_pinned(base_url, 0, self_post_fetch_amt, '#pinned_post_area'); 
 });
 </script>
 
