@@ -65,7 +65,8 @@
 			 $this->load->helper('form');
 			 $postID = $this->input->post('comment1_id');
 			 $post = $this->input->post('comment1');
-			 $this->communication_model->add_comments($postID, $post,$username);
+			 $link = "";
+			 $this->communication_model->add_comments($postID, $post,$username, $link);
 			
 
 			 $session_data = $this->session->userdata('logged_in');
@@ -75,6 +76,25 @@
 			 $this->load->view('friend_list_view', $data);
 		
 		 }
+		 
+		 function addCommentAttached(){
+			$session_data = $this->session->userdata('logged_in');
+			$username = $session_data['username'];
+
+			$this->load->helper('form');
+			$postID = $this->input->post('pid_at');
+			$comment = $this->input->post('message_at');
+			$link = $this->input->post('post_link_at');
+			var_dump($postID, $comment, $link);
+			$this->communication_model->add_comments($postID, $comment,$username, $link);
+			
+
+			$session_data = $this->session->userdata('logged_in');
+			$data['username'] = $session_data['username'];
+			$data['nickname'] = $session_data['nickname'];
+			$data["friends"] = $this->communication_model->getFriend($username);
+			$this->load->view('friend_list_view', $data);
+		}
 	}
 
 ?>

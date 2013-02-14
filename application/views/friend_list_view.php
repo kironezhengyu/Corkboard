@@ -55,12 +55,13 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 											"<button class='pinning btn' type='submit'> pin </button></form>" +
 									"</div>" +
 									"<br>" + messages + "<br>" +
-									"<div class='input-append'>" +
-										'<?php echo form_open('friend/addComment'); ?>' +
-										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
-											"<button class='btn' type='submit'> &raquo </button></form>" +
-									"</div>" +
+									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
+								//	"<div class='input-append'>" +
+								//		'<?php echo form_open('friend/addComment'); ?>' +
+								//		"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+								//		"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+								//			"<button class='btn' type='submit'> &raquo </button></form>" +
+								//	"</div>" +
 								"</div>" +
 							"</div>";
 					
@@ -125,6 +126,14 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 		$('#friend_remove').html("<a class='btn btn-primary' href='" + removefriend + "'> Confirm </a>");
 		$('#friend_conf1').modal('show');
 	}
+ });
+
+ $(document).on("click", ".attachC", function(){
+	var uname = '<?php echo $username ?>';
+	var pid = $(this).data('pid');
+	var pid_field = document.getElementById('pid_at_id');
+	pid_field.value = pid;
+	$('#comment_attach').modal('show');
  }); 
 });
 
@@ -197,6 +206,28 @@ $.each(friends, function(){
 	  </div>
 	  <div class="modal-footer" id="friend_remove">
 		<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+	
+		<!-- Modal -->
+	<div id="comment_attach" class="modal hide" >
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Attach link and comment.</h3>
+	  </div>
+	  <div class="modal-body" id="comment_modal_body">
+		<?php echo form_open('friend/addCommentAttached'); ?>
+		
+			<input type="hidden" name="pid_at" value="" id="pid_at_id"> </input>
+			
+			<label for="message_at"><strong>Comment:</strong></label>
+			<TEXTAREA class="input-large" name="message_at"></TEXTAREA><br />
+
+			<label for="post_link_at"><strong>Attachment</strong></label>
+			<input class="input-large" name="post_link_at" type="text" /><br />
+
+			<input class="btn btn-primary btn-large" type="submit" name="submit" value="Submit &raquo" />
+		</form>
 	  </div>
 	</div>
 

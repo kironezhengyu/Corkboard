@@ -4,10 +4,6 @@
 <div class="container pagination-centered">
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<h1>Welcome <?php echo $nickname; ?>!</h1>
-			</div>
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="well">
@@ -43,6 +39,28 @@
 	  </div>
 	</div>
 	
+	<!-- Modal -->
+	<div id="comment_attach" class="modal hide" >
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Attach link and comment.</h3>
+	  </div>
+	  <div class="modal-body" id="comment_modal_body">
+		<?php echo form_open('publicboard/addCommentAttached'); ?>
+		
+			<input type="hidden" name="pid_at" value="" id="pid_at_id"> </input>
+			
+			<label for="message_at"><strong>Comment:</strong></label>
+			<TEXTAREA class="input-large" name="message_at"></TEXTAREA><br />
+
+			<label for="post_link_at"><strong>Attachment</strong></label>
+			<input class="input-large" name="post_link_at" type="text" /><br />
+
+			<input class="btn btn-primary btn-large" type="submit" name="submit" value="Submit &raquo" />
+		</form>
+	  </div>
+	</div>
+	
 </div>
 
 <script>
@@ -51,7 +69,7 @@
 						echo $base;
 				?>;
  var current_offset = 0;
- var self_post_fetch_amt = 2;
+ var self_post_fetch_amt = 3;
 
  var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
  	return $.ajax( { url: base_url + "/index.php/home/fetch_public_posts/" + current_offset*fetch_amt + "/" + fetch_amt
@@ -104,17 +122,14 @@
 										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
 											"<button class='pinning btn' type='submit'> pin </button></form>" +
 									"</div>" +
-
-
-
-
 									"<br>" + messages + "<br>" +
-									"<div class='input-append'>" +
-										'<?php echo form_open('publicboard/addComment'); ?>' +
-										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
-											"<button class='btn' type='submit'> &raquo </button></form>" +
-									"</div>" +
+									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
+								//	"<div class='input-append'>" +
+								//		'<?php echo form_open('publicboard/addComment'); ?>' +
+								//		"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+								//		"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+								//			"<button class='btn' type='submit'> &raquo </button></form>" +
+								//	"</div>" +
 								"</div>" +
 							"</div>";
 					
@@ -160,6 +175,13 @@
 		$('#friend_add').html("<a class='btn btn-primary' href='" + addfriend + "'> Confirm </a>");
 		$('#friend_conf').modal('show');
 	}
+ });
+  $(document).on("click", ".attachC", function(){
+	var uname = '<?php echo $username ?>';
+	var pid = $(this).data('pid');
+	var pid_field = document.getElementById('pid_at_id');
+	pid_field.value = pid;
+	$('#comment_attach').modal('show');
  });
  ajax_fetch(base_url, 0, self_post_fetch_amt, '#users_post_area'); 
 });

@@ -104,9 +104,7 @@ class communication_model extends CI_Model {
 
 	}
 	
-	public function add_comments($comment_id, $comment,$username){ 
-		
-		$link = "";
+	public function add_comments($comment_id, $comment,$username, $link){ 
 		
 		$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
 		

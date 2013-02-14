@@ -70,7 +70,8 @@
 	  </div>
 	  <div class="modal-body" id="comment_modal_body">
 		<?php echo form_open('home/addCommentAttached'); ?>
-			<input type="hidden" name="pid_at" value='' id="pid_at_id"></input>
+		
+			<input type="hidden" name="pid_at" value="" id="pid_at_id"> </input>
 			
 			<label for="message_at"><strong>Comment:</strong></label>
 			<TEXTAREA class="input-large" name="message_at"></TEXTAREA><br />
@@ -145,13 +146,14 @@
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<br>" + messages + "<br>" +
-									"<div class='input-append'>" +
-										'<?php echo form_open('home/addComment'); ?>' +
-										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<button class='attachC btn' data-toggle='modal' data-pid='" + postID +"'> <i class='icon-file'></i> </button>" +
-										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
-											"<button class='btn' type='submit'> &raquo </button></form>" +
-									"</div>" +
+									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
+								//	"<div class='input-append'>" +
+								//		'<?php echo form_open('home/addComment'); ?>' +
+								//		"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+								//		"<button class='attachC btn' data-toggle='modal' data-pid='" + postID +"'> <i class='icon-file'></i> </button>" +
+								//		"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+								//			"<button class='btn' type='submit'> &raquo </button></form>" +
+								//	"</div>" +
 								"</div>" +
 							"</div>";
 					
@@ -248,14 +250,16 @@
 										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
 											"<button class='pinning btn' type='submit'> unpin </button></form>" +
 									"</div>" +
-									"<button class='attachC btn' data-toggle='modal' data-pid='" + postID +"'> <i class='icon-file'></i> </button>" +
+									
 									"<br>" + messages + "<br>" +
-									"<div class='input-append'>" +
-										'<?php echo form_open('home/addComment'); ?>' +
-										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
-											"<button class='btn' type='submit'> &raquo </button></form>" +
-									"</div>" +
+									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
+								//	"<div class='input-append'>" +
+								//		'<?php echo form_open('home/addComment'); ?>' +
+								//		"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+								//		"<button class='attachC btn' data-toggle='modal' data-pid='" + postID +"'> <i class='icon-file'></i> </button>" +
+								//		"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+								//			"<button class='btn' type='submit'> &raquo </button></form>" +
+								//	"</div>" +
 								"</div>" +
 							"</div>";
 					
@@ -306,6 +310,8 @@
  $(document).on("click", ".attachC", function(){
 	var uname = '<?php echo $username ?>';
 	var pid = $(this).data('pid');
+	var pid_field = document.getElementById('pid_at_id');
+	pid_field.value = pid;
 	$('#comment_attach').modal('show');
  });
  ajax_fetch_pinned(base_url, 0, self_post_fetch_amt, '#pinned_post_area'); 
