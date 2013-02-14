@@ -141,6 +141,15 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 </script>
 
 <div class="container">
+	<?php
+	if(validation_errors() != false) {
+		$err =  '<div class="alert alert-error">' . 
+					'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
+					validation_errors() .
+				'</div>';
+		echo $err;
+	}
+	?>
 	<div class="row-fluid">
 		<div class="span4">
 			<div class="well">

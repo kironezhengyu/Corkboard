@@ -2,6 +2,15 @@
 <?php $this->load->view('include/navbar_home')?>
 
 <div class="container pagination-centered">
+	<?php
+	if(validation_errors() != false) {
+		$err =  '<div class="alert alert-error">' . 
+					'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
+					validation_errors() .
+				'</div>';
+		echo $err;
+	}
+	?>
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="row-fluid">

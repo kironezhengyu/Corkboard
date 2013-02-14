@@ -4,9 +4,22 @@
 <div class="container pagination-centered">
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<h1>Welcome <?php echo $nickname; ?>!</h1>
+			<?php
+				//if(isset($data['greeted'])) {
+				//	$welcome =  '<div class="alert alert-success">' . 
+				//					'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
+				//					'<h1>Welcome' .  $nickname . '!</h1>' .
+				//				'</div>';
+				//	echo $welcome;
+				//}
+				if(validation_errors() != false) {
+					$err =  '<div class="alert alert-error">' . 
+								'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
+								validation_errors() .
+							'</div>';
+					echo $err;
+				}
+			?>
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
