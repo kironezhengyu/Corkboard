@@ -20,16 +20,14 @@ class communication_model extends CI_Model {
 		$pid = $pid->pid;
 
 
-
-		$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+	$mysqli = new mysqli(  "localhost", "corkboard", "333", "corkboard" );
 
 		$res = $mysqli->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($msg_content).",".$this->db->escape($pid).",".$this->db->escape($attachment_link).");");
 
 		//$res->close();
 		$mysqli->close();
 
-        $mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
-		
+	$mysqli = new mysqli(  "localhost", "corkboard", "333", "corkboard" );
 		$res = $mysqli->query("call like_post(".$this->db->escape($pid).", ".$this->db->escape($username).")" );
 		
 		$mysqli->close();
@@ -106,7 +104,7 @@ class communication_model extends CI_Model {
 	
 	public function add_comments($comment_id, $comment,$username, $link){ 
 		
-		$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+		$mysqli = new mysqli(  "localhost", "corkboard", "333", "corkboard" );
 		
 		$res = $mysqli->query("call create_msg(".$this->db->escape($username).",".$this->db->escape($comment).",".$this->db->escape($comment_id).",".$this->db->escape($link).");");
 		
@@ -124,7 +122,7 @@ class communication_model extends CI_Model {
 	
 	public function add_friend($self,$friend ){
 		
-			$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+	$mysqli = new mysqli(  "localhost", "corkboard", "333", "corkboard" );
 		
 		$res = $mysqli->query("call addFriend(".$this->db->escape($self).", ".$this->db->escape($friend).")" );
 		
@@ -133,8 +131,7 @@ class communication_model extends CI_Model {
 	}
 
 	public function remove_friend($self,$friend ){
-		
-			$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
+	$mysqli = new mysqli(  "localhost", "corkboard", "333", "corkboard" );
 		
 		$res = $mysqli->query("call removeFriend(".$this->db->escape($self).", ".$this->db->escape($friend).")" );
 		
@@ -160,8 +157,7 @@ class communication_model extends CI_Model {
 	
 	public function like ($username, $postID){
 		
-		$mysqli = new mysqli(  "localhost", "root", "", "corkboard" );
-		
+	$mysqli = new mysqli(  "localhost", "corkboard", "333", "corkboard" );
 		$res = $mysqli->query("call like_post(".$this->db->escape($postID).", ".$this->db->escape($username).")" );
 		
 		$mysqli->close();
