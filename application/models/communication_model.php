@@ -183,5 +183,27 @@ class communication_model extends CI_Model {
 		}		
 		return $result;
 	}
+
+
+	public function search($keyword,$latest_offset,$fetch_amt){
+
+		$query = $this->db->query("call search_post_proc(".$this->db->escape($keyword).",".$this->db->escape($latest_offset).", ".$this->db->escape($fetch_amt).")");	
+		$count =0;
+		$result = array();
+		foreach($query->result_array() as $row)
+		{	 
+			$result[$count]['postId']= $row['postId'];
+			$result[$count]['nickname']= $row['nickname'];
+			$result[$count]['userName']= $row['user_commenting'];
+			$result[$count]['topic'] = $row['topic'];
+			$result[$count]['content']= $row['content'];
+			$result[$count]['num_likes']= $row['num_likes'];
+			$result[$count]['link'] = $row['link'];
+			$count++;
+		}		
+		return $result;
+
+
+	}
 	
 }

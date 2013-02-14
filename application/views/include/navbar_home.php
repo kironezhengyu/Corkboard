@@ -23,10 +23,12 @@
             </li>
 
               <li  class= "button"><a href="<?php echo base_url('index.php/about') ?>">Contact</a></li>
+                         <li class="button navbar-left" style="margin-top:5px; height:40px;"><?php echo form_open('search/search');?>
+        <input type="text" name="keyword">
+        </form></li>
           </ul>
-           <form class="navbar-search pull-left">
-            <input type="text" class="search-query" placeholder="Search">
-           </form>
+
+           
             <ul class="nav pull-right">
 				<li><a href="#create_post" role="button" data-backdrop="false" data-toggle="modal" ><i class="icon-edit"></i></a></li>
 				<div id="create_post" class="modal hide" >

@@ -155,7 +155,7 @@
 					} // End of message loop
 					
 					post = "<div class='span" + span_length + "'>" +
-								"<div class='well'>" +
+								"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<br>" + messages + "<br>" +
@@ -255,7 +255,7 @@
 					} // End of message loop
 					
 					post = "<div class='span" + span_length + "'>" +
-								"<div class='well'>" +
+								"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<div class='input-append'>" +
