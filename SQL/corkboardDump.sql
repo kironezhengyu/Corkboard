@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2013 at 03:46 AM
+-- Generation Time: Feb 15, 2013 at 08:14 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -755,7 +755,11 @@ INSERT INTO `attachment` (`messageId`, `link`) VALUES
 (16, 'http://www.xxx.com'),
 (17, ''),
 (18, ''),
-(19, '');
+(19, ''),
+(20, 'whatever'),
+(21, 'iunjiunhuinh'),
+(22, 'www.google.com'),
+(23, 'http://www.google.com');
 
 -- --------------------------------------------------------
 
@@ -823,7 +827,11 @@ INSERT INTO `likes` (`postId`, `userName`) VALUES
 (8, '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
 (6, '527bd5b5d689e2c32ae974c6229ff785'),
 (9, '527bd5b5d689e2c32ae974c6229ff785'),
-(10, '527bd5b5d689e2c32ae974c6229ff785');
+(10, '527bd5b5d689e2c32ae974c6229ff785'),
+(12, '527bd5b5d689e2c32ae974c6229ff785'),
+(13, '527bd5b5d689e2c32ae974c6229ff785'),
+(14, '527bd5b5d689e2c32ae974c6229ff785'),
+(15, '527bd5b5d689e2c32ae974c6229ff785');
 
 -- --------------------------------------------------------
 
@@ -841,7 +849,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`messageId`),
   KEY `postId` (`postId`),
   KEY `userName` (`userName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `message`
@@ -857,7 +865,11 @@ INSERT INTO `message` (`postId`, `messageId`, `content`, `ts`, `userName`) VALUE
 (10, 16, 'm2', '2013-02-10 09:17:38', '527bd5b5d689e2c32ae974c6229ff785'),
 (9, 17, 'hey john', '2013-02-10 09:18:34', '18126e7bd3f84b3f3e4df094def5b7de'),
 (7, 18, 'hi jack', '2013-02-10 09:21:48', '18126e7bd3f84b3f3e4df094def5b7de'),
-(11, 19, 'mike1', '2013-02-12 02:42:09', '18126e7bd3f84b3f3e4df094def5b7de');
+(11, 19, 'mike1', '2013-02-12 02:42:09', '18126e7bd3f84b3f3e4df094def5b7de'),
+(12, 20, 'yo', '2013-02-14 18:50:39', '527bd5b5d689e2c32ae974c6229ff785'),
+(13, 21, 'yo1', '2013-02-14 18:51:09', '527bd5b5d689e2c32ae974c6229ff785'),
+(14, 22, 'asdf', '2013-02-14 18:51:58', '527bd5b5d689e2c32ae974c6229ff785'),
+(15, 23, 'dad', '2013-02-14 18:52:14', '527bd5b5d689e2c32ae974c6229ff785');
 
 -- --------------------------------------------------------
 
@@ -873,7 +885,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`postId`),
   KEY `userName` (`userName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `post`
@@ -885,7 +897,11 @@ INSERT INTO `post` (`userName`, `postId`, `topic`, `ts`) VALUES
 ('4ff9fc6e4e5d5f590c4f2134a8cc96d1', 8, 'jackpt3', '2013-02-10 09:14:59'),
 ('527bd5b5d689e2c32ae974c6229ff785', 9, 'johnpt1', '2013-02-10 09:17:17'),
 ('527bd5b5d689e2c32ae974c6229ff785', 10, 'johnpt2', '2013-02-10 09:17:37'),
-('18126e7bd3f84b3f3e4df094def5b7de', 11, 'mikept1', '2013-02-12 02:42:08');
+('18126e7bd3f84b3f3e4df094def5b7de', 11, 'mikept1', '2013-02-12 02:42:08'),
+('527bd5b5d689e2c32ae974c6229ff785', 12, 'yo', '2013-02-14 18:50:38'),
+('527bd5b5d689e2c32ae974c6229ff785', 13, 'yo1y', '2013-02-14 18:51:08'),
+('527bd5b5d689e2c32ae974c6229ff785', 14, 'adfadf', '2013-02-14 18:51:57'),
+('527bd5b5d689e2c32ae974c6229ff785', 15, 'dfdd', '2013-02-14 18:52:13');
 
 -- --------------------------------------------------------
 
