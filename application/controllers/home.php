@@ -17,6 +17,7 @@ class Home extends CI_Controller {
      $data['username'] = $session_data['username'];
 	 $data['nickname'] = $session_data['nickname'];
      $data['posts'] = $this->communication_model->fetch_posts($data['username'], 0, 1);
+	 $data['greeted'] = TRUE;
      $this->load->view('home_view', $data);
    }
    else
@@ -116,9 +117,10 @@ function addPost()
     
     $this->form_validation->set_rules('topic', 'Topic', 'trim|required|xss_clean');
     $this->form_validation->set_rules('initial_message', 'Message', 'trim|required|xss_clean');
+	$this->form_validation->set_rules('post_link', 'Link', 'trim|prep_url|valid_url');
 
 
-    if($this->form_validation->run() == TRUE){
+    if($this->form_validation->run() === TRUE){
       $this->communication_model->add_post();
     }
 	
@@ -131,6 +133,30 @@ function addPost()
 
 }
 
+function addCommentAttached(){
+	$session_data = $this->session->userdata('logged_in');
+	$username = $session_data['username'];
+
+	$this->load->helper('form');
+	$this->load->library('form_validation');
+	
+	$this->form_validation->set_rules('pid_at', 'Post ID', 'trim|required|xss_clean');
+	$this->form_validation->set_rules('message_at', 'Comment', 'trim|required|xss_clean');
+	$this->form_validation->set_rules('post_link_at', 'Link', 'trim|prep_url|valid_url');
+	
+	$postID = $this->input->post('pid_at');
+	$comment = $this->input->post('message_at');
+	$link = prep_url($this->input->post('post_link_at'));
+	
+	if($this->form_validation->run() === TRUE){
+		$this->communication_model->add_comments($postID, $comment,$username, $link);
+	}
+	$session_data = $this->session->userdata('logged_in');
+	$data['username'] = $session_data['username'];
+	$data['nickname'] = $session_data['nickname'];
+	$this->load->view('home_view', $data);
+}
+
 function addComment(){
 
 	$session_data = $this->session->userdata('logged_in');
@@ -139,7 +165,8 @@ function addComment(){
 	$this->load->helper('form');
 	$postID = $this->input->post('comment1_id');
 	$post = $this->input->post('comment1');
-	$this->communication_model->add_comments($postID, $post,$username);
+	$link = "";
+	$this->communication_model->add_comments($postID, $post,$username, $link);
 	
 
 	$session_data = $this->session->userdata('logged_in');

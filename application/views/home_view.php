@@ -4,9 +4,22 @@
 <div class="container pagination-centered">
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<h1>Welcome <?php echo $nickname; ?>!</h1>
+			<?php
+				//if(isset($data['greeted'])) {
+				//	$welcome =  '<div class="alert alert-success">' . 
+				//					'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
+				//					'<h1>Welcome' .  $nickname . '!</h1>' .
+				//				'</div>';
+				//	echo $welcome;
+				//}
+				if(validation_errors() != false) {
+					$err =  '<div class="alert alert-error">' . 
+								'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
+								validation_errors() .
+							'</div>';
+					echo $err;
+				}
+			?>
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
@@ -59,6 +72,28 @@
 	  </div>
 	  <div class="modal-footer" id="friend_add">
 		<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+	
+	<!-- Modal -->
+	<div id="comment_attach" class="modal hide" >
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Attach link and comment.</h3>
+	  </div>
+	  <div class="modal-body" id="comment_modal_body">
+		<?php echo form_open('home/addCommentAttached'); ?>
+		
+			<input type="hidden" name="pid_at" value="" id="pid_at_id"> </input>
+			
+			<label for="message_at"><strong>Comment:</strong></label>
+			<TEXTAREA class="input-large" name="message_at"></TEXTAREA><br />
+
+			<label for="post_link_at"><strong>Attachment</strong></label>
+			<input class="input-large" name="post_link_at" type="text" /><br />
+
+			<input class="btn btn-primary btn-large" type="submit" name="submit" value="Submit &raquo" />
+		</form>
 	  </div>
 	</div>
 	
@@ -120,16 +155,18 @@
 					} // End of message loop
 					
 					post = "<div class='span" + span_length + "'>" +
-								"<div class='well'>" +
+								"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<br>" + messages + "<br>" +
-									"<div class='input-append'>" +
-										'<?php echo form_open('home/addComment'); ?>' +
-										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
-											"<button class='btn' type='submit'> &raquo </button></form>" +
-									"</div>" +
+									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
+								//	"<div class='input-append'>" +
+								//		'<?php echo form_open('home/addComment'); ?>' +
+								//		"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+								//		"<button class='attachC btn' data-toggle='modal' data-pid='" + postID +"'> <i class='icon-file'></i> </button>" +
+								//		"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+								//			"<button class='btn' type='submit'> &raquo </button></form>" +
+								//	"</div>" +
 								"</div>" +
 							"</div>";
 					
@@ -165,27 +202,9 @@
 		ajax_fetch(base_url, current_offset, self_post_fetch_amt, "#users_post_area");
 	}
  });
- $(document).on("click", ".announce", function(){
-	var cookie_uname = '<?php echo $username ?>';
-    var uname = $(this).data('uname');
-	if (uname != cookie_uname) {
-		var nickname = $(this).data('nickname');
-		var addfriend = <?php echo '"' . base_url('index.php') . '"'; ?> + "/home/addFriend/" + uname;
-		$('.uname_m').html("Do you wish to add " + nickname + " to your friends list?");
-		$('#friend_add').html("<a class='btn btn-primary' href='" + addfriend + "'> Confirm </a>");
-		$('#friend_conf').modal('show');
-	}
- });
  ajax_fetch(base_url, 0, self_post_fetch_amt, '#users_post_area'); 
 });
-</script>
 
-
-
-
-
-
-<script>
  $(function(){
  var base_url = <?php $base = "'" . base_url('') . "'";
 						echo $base;
@@ -236,7 +255,7 @@
 					} // End of message loop
 					
 					post = "<div class='span" + span_length + "'>" +
-								"<div class='well'>" +
+								"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<div class='input-append'>" +
@@ -244,17 +263,16 @@
 										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
 											"<button class='pinning btn' type='submit'> unpin </button></form>" +
 									"</div>" +
-
-
-
-
+									
 									"<br>" + messages + "<br>" +
-									"<div class='input-append'>" +
-										'<?php echo form_open('home/addComment'); ?>' +
-										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
-											"<button class='btn' type='submit'> &raquo </button></form>" +
-									"</div>" +
+									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
+								//	"<div class='input-append'>" +
+								//		'<?php echo form_open('home/addComment'); ?>' +
+								//		"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+								//		"<button class='attachC btn' data-toggle='modal' data-pid='" + postID +"'> <i class='icon-file'></i> </button>" +
+								//		"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+								//			"<button class='btn' type='submit'> &raquo </button></form>" +
+								//	"</div>" +
 								"</div>" +
 							"</div>";
 					
@@ -301,6 +319,13 @@
 		$('#friend_add').html("<a class='btn btn-primary' href='" + addfriend + "'> Confirm </a>");
 		$('#friend_conf').modal('show');
 	}
+ });
+ $(document).on("click", ".attachC", function(){
+	var uname = '<?php echo $username ?>';
+	var pid = $(this).data('pid');
+	var pid_field = document.getElementById('pid_at_id');
+	pid_field.value = pid;
+	$('#comment_attach').modal('show');
  });
  ajax_fetch_pinned(base_url, 0, self_post_fetch_amt, '#pinned_post_area'); 
 });

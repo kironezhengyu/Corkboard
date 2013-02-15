@@ -46,7 +46,8 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 					} // End of message loop
 					
 					post = "<div class='span" + span_length + "'>" +
-								"<div class='well'>" +
+																"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
+
 									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/friend/like/') . '"'; ?> + "/" +
 											postID + "'> [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 											"<div class='input-append'>" +
@@ -55,12 +56,13 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 											"<button class='pinning btn' type='submit'> pin </button></form>" +
 									"</div>" +
 									"<br>" + messages + "<br>" +
-									"<div class='input-append'>" +
-										'<?php echo form_open('friend/addComment'); ?>' +
-										"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
-										"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
-											"<button class='btn' type='submit'> &raquo </button></form>" +
-									"</div>" +
+									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
+								//	"<div class='input-append'>" +
+								//		'<?php echo form_open('friend/addComment'); ?>' +
+								//		"<input class='input-large' id='comment1' name = 'comment1' type='text'>" +
+								//		"<input type='hidden' name='comment1_id' value='"+ postID   +"' />" +
+								//			"<button class='btn' type='submit'> &raquo </button></form>" +
+								//	"</div>" +
 								"</div>" +
 							"</div>";
 					
@@ -125,6 +127,14 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 		$('#friend_remove').html("<a class='btn btn-primary' href='" + removefriend + "'> Confirm </a>");
 		$('#friend_conf1').modal('show');
 	}
+ });
+
+ $(document).on("click", ".attachC", function(){
+	var uname = '<?php echo $username ?>';
+	var pid = $(this).data('pid');
+	var pid_field = document.getElementById('pid_at_id');
+	pid_field.value = pid;
+	$('#comment_attach').modal('show');
  }); 
 });
 
@@ -132,6 +142,15 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 </script>
 
 <div class="container">
+	<?php
+	if(validation_errors() != false) {
+		$err =  '<div class="alert alert-error">' . 
+					'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
+					validation_errors() .
+				'</div>';
+		echo $err;
+	}
+	?>
 	<div class="row-fluid">
 		<div class="span4">
 			<div class="well">
@@ -197,6 +216,28 @@ $.each(friends, function(){
 	  </div>
 	  <div class="modal-footer" id="friend_remove">
 		<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+	
+		<!-- Modal -->
+	<div id="comment_attach" class="modal hide" >
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Attach link and comment.</h3>
+	  </div>
+	  <div class="modal-body" id="comment_modal_body">
+		<?php echo form_open('friend/addCommentAttached'); ?>
+		
+			<input type="hidden" name="pid_at" value="" id="pid_at_id"> </input>
+			
+			<label for="message_at"><strong>Comment:</strong></label>
+			<TEXTAREA class="input-large" name="message_at"></TEXTAREA><br />
+
+			<label for="post_link_at"><strong>Attachment</strong></label>
+			<input class="input-large" name="post_link_at" type="text" /><br />
+
+			<input class="btn btn-primary btn-large" type="submit" name="submit" value="Submit &raquo" />
+		</form>
 	  </div>
 	</div>
 

@@ -13,7 +13,7 @@
             <li class="button"><a href="<?php echo base_url('index.php/home') ?>">Home</a></li>
         
                         
-             
+     
 
             <li class="contact_popover">
              <a href="#" role="button">About</a>

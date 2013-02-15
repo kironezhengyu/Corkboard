@@ -2,25 +2,17 @@
 <?php $this->load->view('include/navbar_home')?>
 
 <div class="container pagination-centered">
-	<?php
-	if(validation_errors() != false) {
-		$err =  '<div class="alert alert-error">' . 
-					'<button type="button" class="close" data-dismiss="alert">&times;</button>' .
-					validation_errors() .
-				'</div>';
-		echo $err;
-	}
-	?>
+
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="well">
-						<h2 class="muted">Public Posts</h2>
+						<h2 class="muted">Search Results for <?php echo '"'  . $keyword . '"'?></h2>
 						<hr>
 
 						<div class="row-fluid" id="users_post_area">
-							
+
 						</div>
 
 						<hr>
@@ -81,7 +73,7 @@
  var self_post_fetch_amt = 3;
 
  var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
- 	return $.ajax( { url: base_url + "/index.php/home/fetch_public_posts/" + current_offset*fetch_amt + "/" + fetch_amt
+ 	return $.ajax( { url: base_url + "/index.php/search/fetch_search/" + current_offset*fetch_amt + "/" + fetch_amt + "/" + <?php echo '"'  . $keyword . '"'?>
  			, success : function(d){
 			    var data = JSON.parse(d);
  				var offset = current_offset; 
@@ -176,7 +168,7 @@
 	}
  });
  $(document).on("click", ".announce", function(){
-	var cookie_uname = '<?php echo $username ?>';
+	var cookie_uname = '"<?php echo $username ?>"';
     var uname = $(this).data('uname');
 	if (uname != cookie_uname) {
 		var nickname = $(this).data('nickname');
@@ -198,3 +190,5 @@
 </script>
 
 <?php $this->load->view('include/footer')?>
+
+
