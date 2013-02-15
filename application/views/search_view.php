@@ -109,7 +109,7 @@
 						if (attachment==""){
 							messages += "<br>";}
 						else{
-							messages += "  <i><a href='" + attachment + "'>attachment</a></i><br>"
+							messages += "  <i><a href='http://" + attachment + "'>attachment</a></i><br>"
 						}
 						j++;
 					} // End of message loop

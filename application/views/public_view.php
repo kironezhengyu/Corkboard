@@ -77,7 +77,7 @@
  var base_url = <?php $base = "'" . base_url('') . "'";
 						echo $base;
 				?>;
- var current_offset = 0;
+ var current_offset = 3;
  var self_post_fetch_amt = 3;
 
  var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc){
@@ -117,7 +117,8 @@
 						if (attachment==""){
 							messages += "<br>";}
 						else{
-							messages += "  <i><a href='" + attachment + "'>attachment</a></i><br>"
+							messages += "  <i><a href= 'http://"+ attachment + "'>attachment</a></i><br>"
+							console.log(attachment);
 						}
 						j++;
 					} // End of message loop

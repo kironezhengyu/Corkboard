@@ -50,7 +50,10 @@ class Home extends CI_Controller {
      $session_data = $this->session->userdata('logged_in');
      $data['posts'] = $this->communication_model->fetch_public_posts($offset, $fetch_amt);
 	 echo json_encode($data);
+	        
      return json_encode($data);   
+	 
+	 
    }
    else
    {

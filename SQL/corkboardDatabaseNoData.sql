@@ -392,13 +392,16 @@ BEGIN
 	END IF;
 
 	SET @sch = concat("%", keyword, "%");
-	SELECT *
-	FROM post_view
-	 
-	WHERE topic like @sch
-	
-        ORDER BY postId DESC
-        LIMIT fetch_amt OFFSET latest_offset;      
+	SELECT * 
+	FROM post_view pv
+	JOIN (
+	SELECT * 
+	FROM post
+	WHERE topic LIKE @sch 
+	ORDER BY postId DESC 
+	LIMIT fetch_amt
+	OFFSET latest_offset
+	)p ON pv.postId = p.postId;     
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `unpin_post`(IN `uname` VARCHAR(100), IN `pid` INT)

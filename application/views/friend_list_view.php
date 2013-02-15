@@ -27,6 +27,7 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 				var num_likes = 0;
 				var fetched_posts = "";
 				var ret = "";
+				var attachment;
 				
 				while (k < fetch_amt && i < data["posts"].length){ // Post loop
 					j = i;
@@ -38,10 +39,16 @@ var ajax_fetch = function(base_url , current_offset, fetch_amt, post_loc, uname)
 					
 					
 					while (j < data["posts"].length && topic == data["posts"][j]['topic']){ // Message loop
+					attachment = data["posts"][j]['link'];
 						messages = messages + "<b>" + "<a class='announce btn btn-link' data-toggle='modal' data-uname='" + data["posts"][j]['userName']
 										+ "' data-nickname='" + data["posts"][j]['nickname'] + "'>"
 										+ data["posts"][j]['nickname'] + ":</a></b> " + data["posts"][j]['content']
 										+"<br>";
+						if (attachment==""){
+							messages += "<br>";}
+						else{
+							messages += "  <i><a href='http://" + attachment + "'>attachment</a></i><br>"
+						}
 						j++;
 					} // End of message loop
 					
