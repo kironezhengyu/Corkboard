@@ -1,5 +1,5 @@
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addFriend`(IN self VARCHAR(100), IN friend VARCHAR(100))
+CREATE PROCEDURE `addFriend`(IN self VARCHAR(100), IN friend VARCHAR(100))
 BEGIN
 	IF self IS NULL OR friend IS NULL
 	THEN

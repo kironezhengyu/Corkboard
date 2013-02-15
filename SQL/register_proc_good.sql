@@ -1,4 +1,5 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `register_proc`( IN username VARCHAR(100),
+DELIMITER $$
+CREATE PROCEDURE `register_proc`( IN username VARCHAR(100),
 IN nickname VARCHAR(100),
                                 IN password CHAR(32),
                                 IN conf_password CHAR(32))
@@ -27,4 +28,5 @@ SET MESSAGE_TEXT = 'Passwords do not match.';
 
 INSERT INTO user
 VALUES(username, nickname, password);
-END;
+END $$
+DELIMITER ;

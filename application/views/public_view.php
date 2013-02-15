@@ -87,7 +87,7 @@
  				var offset = current_offset; 
 				$(post_loc).empty();
 				
-				var span_length = 12 / fetch_amt;
+				var span_length = 12 / (fetch_amt - 1);
 				var i = 0;
 				var k = 0;
 				var j = 0;
@@ -125,7 +125,7 @@
 					post = "<div class='span" + span_length + "'>" +
 																"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
 
-									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/publicboard/like/') . '"'; ?> + "/" +
+									"<h3>" + "<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/publicboard/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<div class='input-append'>" +
 										'<?php echo form_open('publicboard/pin_post'); ?>' +

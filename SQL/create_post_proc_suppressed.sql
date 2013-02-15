@@ -1,7 +1,7 @@
 -- usage:  call create_post_proc("jack", "some topic", @pid)
 
 DELIMITER $$
-CREATE PROCEDURE `create_post_proc`(IN `uname` VARCHAR(100), IN `ptopic` VARCHAR(100), OUT `pid` INT)
+CREATE PROCEDURE `create_post_proc_supressed`(IN `uname` VARCHAR(100), IN `ptopic` VARCHAR(100))
 BEGIN
 
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -22,11 +22,7 @@ BEGIN
 	START TRANSACTION;
 
 		insert into post(userName, topic) values (uname, ptopic);
-
-		SET pid = (select postId from post order by postId desc limit 1);
 	COMMIT;
-
-	select pid;
 
 END $$
 DELIMITER ;

@@ -18,11 +18,10 @@
 -- Created - Jordon Phillips - 1/24/13
 --
 -------------------------------------------------------------------------------
-
 DELIMITER $$
 CREATE PROCEDURE login_proc(IN `user_username` VARCHAR(100), IN `user_password` VARCHAR(100))
 BEGIN
-	IF userName IS NULL OR nickname IS NULL
+	IF user_username IS NULL OR user_password IS NULL
 	THEN
 		SIGNAL SQLSTATE '02000'
 			SET MESSAGE_TEXT = 'Values may not be NULL.';

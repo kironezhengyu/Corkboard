@@ -1,20 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Feb 15, 2013 at 08:14 AM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `corkboard`
@@ -33,17 +16,8 @@ BEGIN
 
 
 	IF(self <> friend) THEN
-
-
-
 		INSERT INTO friends
-
-
-
 		VALUES(self, friend);
-
-
-
 	END IF;
 
 
@@ -730,178 +704,59 @@ DELIMITER ;
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `attachment`
---
+CREATE TABLE user (
+         userName VARCHAR(100) NOT NULL,
+         nickname VARCHAR(100) NOT NULL,
+         password VARCHAR(100) NOT NULL,
+		 PRIMARY KEY(userName)
+       );
+	   
+CREATE TABLE post(
+       postId INT(30) NOT NULL AUTO_INCREMENT,
+	   userName VARCHAR(100),
+	   topic VARCHAR(100) NOT NULL,
+       FOREIGN KEY (userName) REFERENCES user(userName) ON DELETE SET NULL,
+	   PRIMARY KEY(postId)
+);
 
-DROP TABLE IF EXISTS `attachment`;
-CREATE TABLE IF NOT EXISTS `attachment` (
-  `messageId` int(30) NOT NULL,
-  `link` varchar(255) NOT NULL,
-  PRIMARY KEY (`messageId`,`link`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE message(
+       postId INT(30) NOT NULL,
+       messageId INT(30) NOT NULL AUTO_INCREMENT,
+       content TEXT ,
+       ts TIMESTAMP NOT NULL,
+       userName VARCHAR(100),
+	   FOREIGN KEY (postId) REFERENCES post(postId) ON DELETE CASCADE,
+       FOREIGN KEY (userName) REFERENCES user(userName) ON DELETE SET NULL,
+	   PRIMARY KEY (messageId)
+);
 
---
--- Dumping data for table `attachment`
---
-
-INSERT INTO `attachment` (`messageId`, `link`) VALUES
-(10, 'http://www.google.com'),
-(11, ''),
-(12, ''),
-(13, ''),
-(14, ''),
-(15, ''),
-(16, 'http://www.xxx.com'),
-(17, ''),
-(18, ''),
-(19, ''),
-(20, 'whatever'),
-(21, 'iunjiunhuinh'),
-(22, 'www.google.com'),
-(23, 'http://www.google.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `board_post`
---
-
-DROP TABLE IF EXISTS `board_post`;
-CREATE TABLE IF NOT EXISTS `board_post` (
-  `userName` varchar(100) NOT NULL,
-  `postId` int(30) NOT NULL,
-  PRIMARY KEY (`userName`,`postId`),
-  KEY `postId` (`postId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `board_post`
---
-
-INSERT INTO `board_post` (`userName`, `postId`) VALUES
-('18126e7bd3f84b3f3e4df094def5b7de', 6),
-('527bd5b5d689e2c32ae974c6229ff785', 6),
-('18126e7bd3f84b3f3e4df094def5b7de', 10);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `friends`
---
-
-DROP TABLE IF EXISTS `friends`;
-CREATE TABLE IF NOT EXISTS `friends` (
-  `userName` varchar(100) NOT NULL,
-  `friend_user_name` varchar(100) NOT NULL,
-  PRIMARY KEY (`userName`,`friend_user_name`),
-  KEY `friend_user_name` (`friend_user_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `likes`
---
-
-DROP TABLE IF EXISTS `likes`;
-CREATE TABLE IF NOT EXISTS `likes` (
-  `postId` int(30) NOT NULL,
-  `userName` varchar(100) NOT NULL,
-  PRIMARY KEY (`postId`,`userName`),
-  KEY `userName` (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `likes`
---
-
-INSERT INTO `likes` (`postId`, `userName`) VALUES
-(6, '18126e7bd3f84b3f3e4df094def5b7de'),
-(7, '18126e7bd3f84b3f3e4df094def5b7de'),
-(8, '18126e7bd3f84b3f3e4df094def5b7de'),
-(10, '18126e7bd3f84b3f3e4df094def5b7de'),
-(11, '18126e7bd3f84b3f3e4df094def5b7de'),
-(6, '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(7, '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(8, '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(6, '527bd5b5d689e2c32ae974c6229ff785'),
-(9, '527bd5b5d689e2c32ae974c6229ff785'),
-(10, '527bd5b5d689e2c32ae974c6229ff785'),
-(12, '527bd5b5d689e2c32ae974c6229ff785'),
-(13, '527bd5b5d689e2c32ae974c6229ff785'),
-(14, '527bd5b5d689e2c32ae974c6229ff785'),
-(15, '527bd5b5d689e2c32ae974c6229ff785');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `message`
---
-
-DROP TABLE IF EXISTS `message`;
-CREATE TABLE IF NOT EXISTS `message` (
-  `postId` int(30) NOT NULL,
-  `messageId` int(30) NOT NULL AUTO_INCREMENT,
-  `content` text,
-  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `userName` varchar(100) NOT NULL,
-  PRIMARY KEY (`messageId`),
-  KEY `postId` (`postId`),
-  KEY `userName` (`userName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
-
---
--- Dumping data for table `message`
---
-
-INSERT INTO `message` (`postId`, `messageId`, `content`, `ts`, `userName`) VALUES
-(6, 10, 'm1', '2013-02-10 09:08:11', '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(6, 11, 'shutup', '2013-02-10 09:08:36', '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(6, 12, 'oh no', '2013-02-10 09:12:37', '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(7, 13, 'm2', '2013-02-10 09:14:45', '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(8, 14, 'm3', '2013-02-10 09:15:00', '4ff9fc6e4e5d5f590c4f2134a8cc96d1'),
-(9, 15, 'm1', '2013-02-10 09:17:18', '527bd5b5d689e2c32ae974c6229ff785'),
-(10, 16, 'm2', '2013-02-10 09:17:38', '527bd5b5d689e2c32ae974c6229ff785'),
-(9, 17, 'hey john', '2013-02-10 09:18:34', '18126e7bd3f84b3f3e4df094def5b7de'),
-(7, 18, 'hi jack', '2013-02-10 09:21:48', '18126e7bd3f84b3f3e4df094def5b7de'),
-(11, 19, 'mike1', '2013-02-12 02:42:09', '18126e7bd3f84b3f3e4df094def5b7de'),
-(12, 20, 'yo', '2013-02-14 18:50:39', '527bd5b5d689e2c32ae974c6229ff785'),
-(13, 21, 'yo1', '2013-02-14 18:51:09', '527bd5b5d689e2c32ae974c6229ff785'),
-(14, 22, 'asdf', '2013-02-14 18:51:58', '527bd5b5d689e2c32ae974c6229ff785'),
-(15, 23, 'dad', '2013-02-14 18:52:14', '527bd5b5d689e2c32ae974c6229ff785');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `post`
---
-
-DROP TABLE IF EXISTS `post`;
-CREATE TABLE IF NOT EXISTS `post` (
-  `userName` varchar(100) NOT NULL,
-  `postId` int(30) NOT NULL AUTO_INCREMENT,
-  `topic` varchar(100) NOT NULL,
-  `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`postId`),
-  KEY `userName` (`userName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
-
---
--- Dumping data for table `post`
---
-
-INSERT INTO `post` (`userName`, `postId`, `topic`, `ts`) VALUES
-('4ff9fc6e4e5d5f590c4f2134a8cc96d1', 6, 'jackpt1', '2013-02-10 09:08:10'),
-('4ff9fc6e4e5d5f590c4f2134a8cc96d1', 7, 'jackpt2', '2013-02-10 09:14:44'),
-('4ff9fc6e4e5d5f590c4f2134a8cc96d1', 8, 'jackpt3', '2013-02-10 09:14:59'),
-('527bd5b5d689e2c32ae974c6229ff785', 9, 'johnpt1', '2013-02-10 09:17:17'),
-('527bd5b5d689e2c32ae974c6229ff785', 10, 'johnpt2', '2013-02-10 09:17:37'),
-('18126e7bd3f84b3f3e4df094def5b7de', 11, 'mikept1', '2013-02-12 02:42:08'),
-('527bd5b5d689e2c32ae974c6229ff785', 12, 'yo', '2013-02-14 18:50:38'),
-('527bd5b5d689e2c32ae974c6229ff785', 13, 'yo1y', '2013-02-14 18:51:08'),
-('527bd5b5d689e2c32ae974c6229ff785', 14, 'adfadf', '2013-02-14 18:51:57'),
-('527bd5b5d689e2c32ae974c6229ff785', 15, 'dfdd', '2013-02-14 18:52:13');
+CREATE TABLE likes (
+        postId INT(30) NOT NULL,
+        userName VARCHAR(100) NOT NULL,
+        PRIMARY KEY (postId, userName),
+        FOREIGN KEY (postId) REFERENCES post(postId) ON DELETE CASCADE,
+        FOREIGN KEY (userName) REFERENCES user(userName) ON DELETE CASCADE
+);
+CREATE TABLE friends (
+        userName VARCHAR(100) NOT NULL,
+        friend_user_name VARCHAR(100) NOT NULL,
+        PRIMARY KEY (userName, friend_user_name),
+        FOREIGN KEY (userName) REFERENCES user(userName) ON DELETE CASCADE,
+        FOREIGN KEY (friend_user_name) REFERENCES user(userName) ON DELETE CASCADE
+);
+CREATE TABLE board_post (
+        userName VARCHAR(100) NOT NULL,
+        postId INT(30) NOT NULL,
+        PRIMARY KEY (userName, PostId),
+        FOREIGN KEY (userName) REFERENCES user(userName) ON DELETE CASCADE,
+        FOREIGN KEY (postId) REFERENCES post(postId) ON DELETE CASCADE
+);
+CREATE TABLE attachment (
+        messageId INT(30) NOT NULL,
+        link varchar(255) NOT NULL,
+        PRIMARY KEY (messageId, link),
+        FOREIGN KEY (messageId) REFERENCES message(messageId) ON DELETE CASCADE
+);
 
 -- --------------------------------------------------------
 
@@ -933,27 +788,6 @@ CREATE TABLE IF NOT EXISTS `post_view` (
 );
 -- --------------------------------------------------------
 
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `userName` varchar(100) NOT NULL,
-  `nickname` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`userName`, `nickname`, `password`) VALUES
-('18126e7bd3f84b3f3e4df094def5b7de', 'mike', '99754106633f94d350db34d548d6091a'),
-('4ff9fc6e4e5d5f590c4f2134a8cc96d1', 'jack', '99754106633f94d350db34d548d6091a'),
-('527bd5b5d689e2c32ae974c6229ff785', 'john', '99754106633f94d350db34d548d6091a');
-
 -- --------------------------------------------------------
 
 --
@@ -972,50 +806,3 @@ DROP TABLE IF EXISTS `post_view`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `post_view` AS select `post`.`postId` AS `postId`,`post`.`topic` AS `topic`,`message`.`messageId` AS `messageId`,`message`.`userName` AS `user_commenting`,`post`.`userName` AS `user_op`,`user`.`nickname` AS `nickname`,`message`.`ts` AS `ts`,`message`.`content` AS `content`,(`post_likes`.`num_likes` - 1) AS `num_likes`,`attachment`.`link` AS `link` from ((((`post` join `message`) join `user`) join `post_likes`) join `attachment`) where ((`post`.`postId` = `message`.`postId`) and (`message`.`userName` = `user`.`userName`) and (`post_likes`.`postId` = `post`.`postId`) and (`message`.`messageId` = `attachment`.`messageId`));
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `attachment`
---
-ALTER TABLE `attachment`
-  ADD CONSTRAINT `attachment_ibfk_1` FOREIGN KEY (`messageId`) REFERENCES `message` (`messageId`);
-
---
--- Constraints for table `board_post`
---
-ALTER TABLE `board_post`
-  ADD CONSTRAINT `board_post_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`),
-  ADD CONSTRAINT `board_post_ibfk_2` FOREIGN KEY (`postId`) REFERENCES `post` (`postId`);
-
---
--- Constraints for table `friends`
---
-ALTER TABLE `friends`
-  ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`),
-  ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`friend_user_name`) REFERENCES `user` (`userName`);
-
---
--- Constraints for table `likes`
---
-ALTER TABLE `likes`
-  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`postId`) REFERENCES `post` (`postId`),
-  ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`);
-
---
--- Constraints for table `message`
---
-ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`postId`) REFERENCES `post` (`postId`),
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`);
-
---
--- Constraints for table `post`
---
-ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `user` (`userName`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

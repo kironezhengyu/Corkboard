@@ -1,5 +1,5 @@
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `fetch_friends`(IN `inuname` VARCHAR(100))
+CREATE PROCEDURE `fetch_friends`(IN `inuname` VARCHAR(100))
     READS SQL DATA
 BEGIN
 	IF inuname IS NULL

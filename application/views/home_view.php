@@ -156,7 +156,7 @@
 					
 					post = "<div class='span" + span_length + "'>" +
 								"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
-									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
+									"<h3>" + "<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<br>" + messages + "<br>" +
 									"<button class='attachC btn btn-primary' data-toggle='modal' data-pid='" + postID +"'> reply &raquo </button>" +
@@ -256,7 +256,7 @@
 					
 					post = "<div class='span" + span_length + "'>" +
 								"<div class='well' style='background-color: rgb(252, 240, 173);>'" +
-									"<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
+									"<h3>" + "<h3>" + topic + "<a href='" + <?php echo '"' . base_url('index.php/home/like/') . '"'; ?> + "/" +
 											postID + "'>  [" +num_likes+ "  <i class='icon-thumbs-up'></i>]</a></h3>" +
 									"<div class='input-append'>" +
 										'<?php echo form_open('home/unpin_post'); ?>' +
